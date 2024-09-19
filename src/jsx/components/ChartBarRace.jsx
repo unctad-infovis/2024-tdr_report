@@ -154,7 +154,7 @@ function BarRaceChart({
 
   const getSubtitle = useCallback(() => {
     const total = (getData(input.current.value)[0][1]).toFixed(0);
-    return `<div class="year">${input.current.value}</div><br /><div class="total">${formatNr(total, ' ')} tonnes</div>`;
+    return `<div class="year">${input.current.value}</div><br /><div class="total">${formatNr(total, ' ')} cars</div>`;
   }, [getData, input]);
 
   const xScale = d3.scaleLinear()
