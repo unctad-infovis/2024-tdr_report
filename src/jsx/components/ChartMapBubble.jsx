@@ -230,7 +230,7 @@ function MapBarChart({
           minSize: 5,
           maxSize: 50,
           tooltip: {
-            pointFormat: ''
+            pointFormat: '{point.country}: {point.z}'
           }
         }],
         subtitle: {

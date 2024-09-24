@@ -61,9 +61,9 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
   // eslint-disable-next-line
   H.Fx.prototype.textSetter = function () {
     try {
-      let startValue = this.start.replace(/ /g, '');
-      let endValue = this.end.replace(/ /g, '');
-      let currentValue = this.end.replace(/ /g, '');
+      let startValue = this.start.replace(/,/g, '');
+      let endValue = this.end.replace(/,/g, '');
+      let currentValue = this.end.replace(/,/g, '');
 
       if ((startValue || '').match(FLOAT)) {
         startValue = parseInt(startValue, 10);
