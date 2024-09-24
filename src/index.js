@@ -4,6 +4,12 @@ import { createRoot } from 'react-dom/client';
 
 import Figure1 from './jsx/Figure1.jsx';
 
-const container = document.getElementById('app-root-2024-tdr_report');
-const root = createRoot(container);
-root.render(<Figure1 />);
+import Figure2 from './jsx/Figure2.jsx';
+
+const container_figure1 = document.getElementById('app-root-2024-tdr_report_figure1');
+const root_figure1 = createRoot(container_figure1);
+root_figure1.render(<Figure1 />);
+
+const container_figure2 = document.getElementById('app-root-2024-tdr_report_figure2');
+const root_figure2 = createRoot(container_figure2);
+root_figure2.render(<Figure2 />);

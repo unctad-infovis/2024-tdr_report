@@ -18,6 +18,7 @@ import * as d3 from 'd3';
 
 // Load helpers.
 import countryCodes from '../helpers/CountryCodes.js';
+import countryColors from '../helpers/CountryColors.js';
 import formatNr from '../helpers/FormatNr.js';
 
 highchartsAccessibility(Highcharts);
@@ -149,11 +150,19 @@ function BarRaceChart({
       const countryData = country[1].data;
       return [countryName, countryData[year - startYear].value];
     }).sort((a, b) => b[1] - a[1]);
-    return [output[0], output.slice(1, nbr)];
+    const slice = output.slice(1, nbr);
+    return {
+      total: output[0],
+      values: slice.map(el => ({
+        color: countryColors(el[0]),
+        name: el[0],
+        y: el[1]
+      }))
+    };
   }, [data]);
 
   const getSubtitle = useCallback(() => {
-    const total = (getData(input.current.value)[0][1]).toFixed(0);
+    const total = (getData(input.current.value).total[1]).toFixed(0);
     return `<div class="year">${input.current.value}</div><br /><div class="total">${formatNr(total, ' ')} cars</div>`;
   }, [getData, input]);
 
@@ -183,9 +192,10 @@ function BarRaceChart({
 
   const updateChart = useCallback((year_idx) => {
     document.querySelectorAll('.meta_data .values')[0].innerHTML = getSubtitle();
-
+    const tmp_data = getData(year_idx);
     chart.current.series[0].update({
-      data: getData(year_idx)[1],
+      color: tmp_data.color,
+      data: tmp_data.values,
       name: year_idx
     });
     chart.current.setTitle({
@@ -209,7 +219,7 @@ function BarRaceChart({
       btn.current.innerHTML = '⏸︎';
       chart.current.sequenceTimer = setInterval(() => {
         update(1);
-      }, 500);
+      }, 1000);
     };
     if (chart.current.sequenceTimer) {
       pause();
@@ -236,6 +246,7 @@ function BarRaceChart({
 
   const isVisible = useIsVisible(chartRef, { once: true });
   const createChart = useCallback(() => {
+    const tmp_data = getData(startYear);
     chart.current = Highcharts.chart(`chartIdx${idx}`, {
       caption: {
         align: 'left',
@@ -291,7 +302,6 @@ function BarRaceChart({
         },
         type: 'bar'
       },
-      colors: ['#009edb'],
       credits: {
         enabled: false
       },
@@ -312,7 +322,7 @@ function BarRaceChart({
         bar: {
           animation: false,
           borderWidth: 0,
-          colorByPoint: true,
+          colorByPoint: false,
           cursor: 'default',
           dataSorting: {
             enabled: true,
@@ -362,7 +372,7 @@ function BarRaceChart({
         }]
       },
       series: [{
-        data: getData(startYear)[1],
+        data: tmp_data.values,
         name: startYear,
         type: 'bar'
       }],

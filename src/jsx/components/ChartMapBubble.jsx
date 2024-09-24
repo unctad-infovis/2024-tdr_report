@@ -1,0 +1,316 @@
+import React, {
+  useEffect, useCallback, useRef, memo, useState
+} from 'react';
+import PropTypes from 'prop-types';
+
+// https://www.npmjs.com/package/react-is-visible
+import 'intersection-observer';
+import { useIsVisible } from 'react-is-visible';
+
+// https://www.highcharts.com/
+import Highcharts from 'highcharts';
+import highchartsMap from 'highcharts/modules/map';
+import highchartsAccessibility from 'highcharts/modules/accessibility';
+import highchartsExporting from 'highcharts/modules/exporting';
+import highchartsExportData from 'highcharts/modules/export-data';
+
+import map_data_import from '../data/UNWorldmap.js';
+
+// Load helpers.
+import countryColors from '../helpers/CountryColors.js';
+import countryLocations from '../helpers/CountryLocations.js';
+
+highchartsMap(Highcharts);
+highchartsAccessibility(Highcharts);
+highchartsExporting(Highcharts);
+highchartsExportData(Highcharts);
+
+Highcharts.setOptions({
+  lang: {
+    decimalPoint: '.',
+    downloadCSV: 'Download CSV data',
+    thousandsSep: ','
+  }
+});
+Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
+  const path = [
+    // Arrow stem
+    'M', x + w * 0.5, y,
+    'L', x + w * 0.5, y + h * 0.7,
+    // Arrow head
+    'M', x + w * 0.3, y + h * 0.5,
+    'L', x + w * 0.5, y + h * 0.7,
+    'L', x + w * 0.7, y + h * 0.5,
+    // Box
+    'M', x, y + h * 0.9,
+    'L', x, y + h,
+    'L', x + w, y + h,
+    'L', x + w, y + h * 0.9
+  ];
+  return path;
+};
+
+function MapBarChart({
+  data, chart_height, idx, note, source, subtitle, title
+}) {
+  const startYear = 1999;
+  const chartRef = useRef();
+  const chart = useRef();
+  const [rangeValue, setRangeValue] = useState(1999);
+  const [once, setOnce] = useState(false);
+
+  // 009edb
+  // fbaf17
+  // eslint-disable-next-line
+  const getData = useCallback((year) => {
+    year = parseInt(year, 10);
+    const output = Object.entries(data).map(country => {
+      const countryName = country[1].name;
+      const countryData = country[1].data;
+      return [countryName, countryData[year - startYear].value];
+    }).sort((a, b) => b[1] - a[1]);
+    const slice = output.slice(1);
+    return slice.map(el => [el[0], countryLocations(el[0])[0], countryLocations(el[0])[1] - 11.31, countryColors(el[0]), el[1]]);
+  }, [data]);
+
+  // const data = useMemo(() => ({
+  //   1999:
+  //   [
+  //     ['China', 33.75, -84.38, '#fbaf17', 3000],
+  //     ['United States of America', 33.75, 30.38, '#009edb', 2000]
+  //   ],
+  //   2000:
+  //   [
+  //     ['China', 33.75, -84.38, '#fbaf17', 2000],
+  //     ['United States of America', 33.75, 20.38, '#009edb', 9000]
+  //   ]
+  // }), []);
+
+  const isVisible = useIsVisible(chartRef, { once: true });
+
+  const updateChart = (current_year_idx) => {
+    current_year_idx = parseInt(current_year_idx, 10);
+    setRangeValue(current_year_idx);
+    const tmp_data = getData(current_year_idx);
+    chart.current.series[1].update({ data: tmp_data });
+    chart.current.setTitle({
+      text: `${title} in ${current_year_idx}?`
+    });
+    chart.current.redraw(true);
+  };
+
+  const createChart = useCallback((map_data) => {
+    if (once === false) {
+      chart.current = Highcharts.mapChart(`chartIdx${idx}`, {
+        caption: {
+          align: 'left',
+          margin: 15,
+          style: {
+            color: 'rgba(0, 0.0, 0.0, 0.8)',
+            fontSize: '14px'
+          },
+          text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
+          useHTML: true,
+          verticalAlign: 'bottom',
+          x: 0
+        },
+        chart: {
+          animation: false,
+          backgroundColor: '#f4f9fd',
+          height: chart_height,
+          events: {
+            load() {
+              const chart_this = this;
+              chart_this.renderer.image('https://static.dwcdn.net/custom/themes/unctad-2024-rebrand/Blue%20arrow.svg', 20, 20, 44, 43.88).add();
+            }
+          },
+          map: map_data,
+          marginRight: 50,
+          resetZoomButton: {
+            theme: {
+              fill: '#fff',
+              r: 0.0,
+              areas: {
+                hover: {
+                  fill: '#0077b8',
+                  stroke: 'transparent',
+                  style: {
+                    color: '#fff'
+                  }
+                }
+              },
+              stroke: '#7c7067',
+              style: {
+                fontFamily: 'Inter',
+                fontSize: '13px',
+                fontWeight: 400
+              }
+            }
+          },
+          style: {
+            color: 'rgba(0, 0.0, 0.0, 0.8)',
+            fontFamily: 'Inter',
+            fontWeight: 400
+          }
+        },
+        colors: ['rgba(0, 73, 135, 0.8)'],
+        credits: {
+          enabled: false
+        },
+        exporting: {
+          enabled: false,
+          buttons: {
+            contextButton: {
+              menuItems: ['viewFullscreen', 'separator', 'downloadPNG', 'downloadPDF', 'separator', 'downloadCSV'],
+              symbol: 'download',
+              symbolFill: '#000'
+            }
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        mapNavigation: {
+          buttonOptions: {
+            verticalAlign: 'bottom'
+          },
+          enabled: false,
+          enableDoubleClickZoomTo: false
+        },
+        mapView: {
+          center: [20, 10],
+          projection: {
+            name: 'EqualEarth',
+          },
+          zoom: 1.5
+        },
+        plotOptions: {
+          series: {
+            animation: false,
+            borderColor: 'rgba(0, 0.0, 0.0, 0.3)',
+            borderRadius: 0.0,
+            events: {
+              legendItemClick: (e) => {
+                e.preventDefault();
+              }
+            },
+            pointWidth: 15
+          }
+        },
+        responsive: {
+          rules: [{
+            chartOptions: {
+              legend: {
+                layout: 'horizontal'
+              },
+              title: {
+                margin: 20,
+                style: {
+                  fontSize: '26px',
+                  lineHeight: '30px'
+                }
+              }
+            },
+            condition: {
+              maxWidth: 500
+            }
+          }]
+        },
+        series: [{
+          borderColor: 'rgba(0, 0, 0, 0.01)',
+          nullColor: 'rgba(225, 225, 225, 1)',
+          enableMouseTracking: false
+        }, {
+          type: 'mapbubble',
+          name: 'Vehicles',
+          keys: [
+            'country', 'lat', 'lon', 'color', 'z'
+          ],
+          data: getData(startYear),
+          minSize: 5,
+          maxSize: 50,
+          tooltip: {
+            pointFormat: ''
+          }
+        }],
+        subtitle: {
+          align: 'left',
+          enabled: true,
+          style: {
+            color: 'rgba(0, 0, 0, 0.8)',
+            fontSize: '16px',
+            fontWeight: 400,
+            lineHeight: '18px'
+          },
+          text: subtitle,
+          widthAdjust: -144,
+          x: 10
+        },
+        title: {
+          align: 'left',
+          margin: 20,
+          style: {
+            color: '#000',
+            fontSize: '30px',
+            fontWeight: 700,
+            lineHeight: '34px'
+          },
+          text: `${title} in 1999?`,
+          widthAdjust: -144,
+          x: 64,
+          y: 25
+        },
+        tooltip: {
+          enabled: true
+        },
+        yAxis: {
+          visible: false,
+          max: 150
+        },
+        xAxis: {
+          visible: false
+        }
+      });
+      chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
+      setOnce(true);
+    }
+  }, [chart_height, idx, getData, note, setOnce, once, source, subtitle, title]);
+
+  useEffect(() => {
+    if (isVisible === true) {
+      setTimeout(() => {
+        createChart(map_data_import);
+      }, 300);
+    }
+  }, [createChart, isVisible]);
+
+  return (
+    <div className="chart_container" style={{ minHeight: chart_height, maxWidth: '700px' }}>
+      <div className="play_controls">
+        <input className="play_range_map" type="range" aria-label="Range" value={rangeValue} min={1999} max={2023} onChange={(event) => updateChart(event.currentTarget.value)} />
+      </div>
+      <div ref={chartRef}>
+        {(isVisible) && (<div className="chart" id={`chartIdx${idx}`} />)}
+      </div>
+      <noscript>Your browser does not support JavaScript!</noscript>
+    </div>
+  );
+}
+
+MapBarChart.propTypes = {
+  chart_height: PropTypes.number,
+  data: PropTypes.instanceOf(Array).isRequired,
+  idx: PropTypes.string.isRequired,
+  note: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  source: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  title: PropTypes.string.isRequired
+};
+
+MapBarChart.defaultProps = {
+  chart_height: 520,
+  note: false,
+  subtitle: ''
+};
+
+export default memo(MapBarChart);

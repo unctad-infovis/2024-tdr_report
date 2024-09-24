@@ -5,7 +5,7 @@ import '../styles/styles.less';
 import CSVtoJSON from './helpers/CSVtoJSON.js';
 import roundNr from './helpers/RoundNr.js';
 
-import ChartBarRace from './components/ChartBarRace.jsx';
+import ChartMapBubble from './components/ChartMapBubble.jsx';
 
 // https://www.highcharts.com/demo/highcharts/bar-race
 function Figure1() {
@@ -41,14 +41,12 @@ function Figure1() {
   return (
     <div className="app">
       {dataFigure && (
-      <ChartBarRace
+      <ChartMapBubble
         data={dataFigure}
-        data_decimals={1}
-        idx="01"
+        idx="02"
         note=""
         source="UN Trade and Development (UNCTAD) calculations based on OICA"
         subtitle="Top 15 country annually, number of vehicles manufactured, 1999–2023"
-        show_only_first_and_last_labels={false}
         suffix="%"
         title="Who manufactures the most vehicles"
         ylabel=""
