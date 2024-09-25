@@ -53,10 +53,15 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 function MapBarChart({
   data, chart_height, idx, note, source, subtitle, title
 }) {
-  const startYear = 1999;
-  const chartRef = useRef();
+  const btn = useRef();
   const chart = useRef();
+  const chartContainerRef = useRef();
+  const chartRef = useRef();
+  const endYear = 2023;
+  const input = useRef();
+  const startYear = 1999;
   const [rangeValue, setRangeValue] = useState(1999);
+  const [chartDone, setChartDone] = useState(false);
   const [once, setOnce] = useState(false);
 
   // 009edb
@@ -73,22 +78,13 @@ function MapBarChart({
     return slice.map(el => [el[0], countryLocations(el[0])[0], countryLocations(el[0])[1] - 11.31, countryColors(el[0]), el[1]]);
   }, [data]);
 
-  // const data = useMemo(() => ({
-  //   1999:
-  //   [
-  //     ['China', 33.75, -84.38, '#fbaf17', 3000],
-  //     ['United States of America', 33.75, 30.38, '#009edb', 2000]
-  //   ],
-  //   2000:
-  //   [
-  //     ['China', 33.75, -84.38, '#fbaf17', 2000],
-  //     ['United States of America', 33.75, 20.38, '#009edb', 9000]
-  //   ]
-  // }), []);
+  const pause = useCallback(() => {
+    btn.current.innerHTML = '⏵︎';
+    clearTimeout(chart.current.sequenceTimer);
+    chart.current.sequenceTimer = undefined;
+  }, []);
 
-  const isVisible = useIsVisible(chartRef, { once: true });
-
-  const updateChart = (current_year_idx) => {
+  const updateChart = useCallback((current_year_idx) => {
     current_year_idx = parseInt(current_year_idx, 10);
     setRangeValue(current_year_idx);
     const tmp_data = getData(current_year_idx);
@@ -97,8 +93,49 @@ function MapBarChart({
       text: `${title} in ${current_year_idx}?`
     });
     chart.current.redraw(true);
+  }, [getData, title]);
+
+  const togglePlay = useCallback(() => {
+    const update = (increment) => {
+      if (increment) {
+        input.current.value = parseInt(input.current.value, 10) + increment;
+      }
+      if (input.current.value >= endYear) {
+        pause(btn);
+      }
+      setRangeValue(input.current.value);
+      updateChart(input.current.value);
+    };
+    const play = () => {
+      btn.current.innerHTML = '⏸︎';
+      chart.current.sequenceTimer = setInterval(() => {
+        update(1);
+      }, 1000);
+    };
+    if (chart.current.sequenceTimer) {
+      pause();
+    } else {
+      if (input.current.value >= endYear) {
+        input.current.value = startYear;
+      }
+      play();
+    }
+  }, [pause, updateChart]);
+
+  const changeYear = (event) => {
+    pause();
+    updateChart(event.currentTarget.value);
+    setRangeValue(event.currentTarget.value);
   };
 
+  useEffect(() => {
+    if (chartDone === true && once === false) {
+      togglePlay();
+      setOnce(true);
+    }
+  }, [chartDone, once, togglePlay]);
+
+  const isVisible = useIsVisible(chartRef, { once: true });
   const createChart = useCallback((map_data) => {
     if (once === false) {
       chart.current = Highcharts.mapChart(`chartIdx${idx}`, {
@@ -174,7 +211,7 @@ function MapBarChart({
           buttonOptions: {
             verticalAlign: 'bottom'
           },
-          enabled: false,
+          enabled: true,
           enableDoubleClickZoomTo: false
         },
         mapView: {
@@ -194,7 +231,12 @@ function MapBarChart({
                 e.preventDefault();
               }
             },
-            pointWidth: 15
+            pointWidth: 15,
+            states: {
+              inactive: {
+                opacity: 1
+              }
+            }
           }
         },
         responsive: {
@@ -227,10 +269,19 @@ function MapBarChart({
             'country', 'lat', 'lon', 'color', 'z'
           ],
           data: getData(startYear),
-          minSize: 5,
-          maxSize: 50,
+          minSize: 8,
+          maxSize: '20%',
+          states: {
+            hover: {
+              halo: {
+                opacity: 0,
+                size: 0
+              }
+            }
+          },
           tooltip: {
-            pointFormat: '{point.country}: {point.z}'
+            headerFormat: '',
+            pointFormat: '{point.country}<br /><strong>{point.z} vehicles</strong>'
           }
         }],
         subtitle: {
@@ -272,11 +323,13 @@ function MapBarChart({
         }
       });
       chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-      setOnce(true);
+      setChartDone(true);
     }
-  }, [chart_height, idx, getData, note, setOnce, once, source, subtitle, title]);
+  }, [chart_height, idx, getData, note, once, source, subtitle, title]);
 
   useEffect(() => {
+    btn.current = chartContainerRef.current.querySelector('.play_pause_button');
+    input.current = chartContainerRef.current.querySelector('.play_range');
     if (isVisible === true) {
       setTimeout(() => {
         createChart(map_data_import);
@@ -285,10 +338,12 @@ function MapBarChart({
   }, [createChart, isVisible]);
 
   return (
-    <div className="chart_container" style={{ minHeight: chart_height, maxWidth: '700px' }}>
+    <div className="chart_container" style={{ minHeight: chart_height, maxWidth: '700px' }} ref={chartContainerRef}>
       <div className="play_controls">
-        <input className="play_range_map" type="range" aria-label="Range" value={rangeValue} min={1999} max={2023} onChange={(event) => updateChart(event.currentTarget.value)} />
+        <button type="button" className="play_pause_button" aria-label="Play Pause" title="play" onClick={(event) => togglePlay(event)}>⏸︎</button>
+        <input className="play_range" type="range" aria-label="Range" value={rangeValue} min={startYear} max={endYear} onInput={(event) => changeYear(event)} onChange={(event) => changeYear(event)} />
       </div>
+
       <div ref={chartRef}>
         {(isVisible) && (<div className="chart" id={`chartIdx${idx}`} />)}
       </div>

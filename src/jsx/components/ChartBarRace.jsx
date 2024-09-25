@@ -131,14 +131,14 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 function BarRaceChart({
   chart_height, data, idx, note, source, subtitle, title
 }) {
-  const startYear = 1999;
-  const endYear = 2023;
-  const nbr = 15;
-  const chart = useRef();
-  const chartRef = useRef();
-  const chartContainerRef = useRef();
   const btn = useRef();
+  const chart = useRef();
+  const chartContainerRef = useRef();
+  const chartRef = useRef();
+  const endYear = 2023;
   const input = useRef();
+  const nbr = 15;
+  const startYear = 1999;
   const [rangeValue, setRangeValue] = useState(0);
   const [chartDone, setChartDone] = useState(false);
   const [once, setOnce] = useState(false);
