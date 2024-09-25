@@ -45,7 +45,7 @@ function Figure1() {
         data={dataFigure}
         idx="02"
         note=""
-        source="UN Trade and Development (UNCTAD) calculations based on OICA"
+        source="UN Trade and Development (UNCTAD) based on OICA."
         subtitle="Top 15 country annually, number of vehicles manufactured, 1999–2023"
         suffix="%"
         title="Who manufactures the most vehicles"

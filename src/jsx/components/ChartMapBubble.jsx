@@ -59,6 +59,7 @@ function MapBarChart({
   const chartRef = useRef();
   const endYear = 2023;
   const input = useRef();
+  const nbr = 15;
   const startYear = 1999;
   const [rangeValue, setRangeValue] = useState(1999);
   const [chartDone, setChartDone] = useState(false);
@@ -74,7 +75,7 @@ function MapBarChart({
       const countryData = country[1].data;
       return [countryName, countryData[year - startYear].value];
     }).sort((a, b) => b[1] - a[1]);
-    const slice = output.slice(1);
+    const slice = output.slice(1, nbr);
     return slice.map(el => [el[0], countryLocations(el[0])[0], countryLocations(el[0])[1] - 11.31, countryColors(el[0]), el[1]]);
   }, [data]);
 
