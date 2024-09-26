@@ -213,7 +213,9 @@ function MapBarChart({
             verticalAlign: 'bottom'
           },
           enabled: true,
-          enableDoubleClickZoomTo: false
+          enableDoubleClickZoom: false,
+          enableDoubleClickZoomTo: false,
+          enableMouseWheelZoom: false
         },
         mapView: {
           center: [20, 10],
@@ -261,7 +263,7 @@ function MapBarChart({
         },
         series: [{
           borderColor: 'rgba(0, 0, 0, 0.01)',
-          nullColor: 'rgba(225, 225, 225, 1)',
+          nullColor: '#ded9d5',
           enableMouseTracking: false
         }, {
           type: 'mapbubble',
