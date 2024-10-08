@@ -8,12 +8,34 @@ function App() {
   return (
     <div className="app">
       <div className="header_container">
-        <div className="logo_container">
-          <img src="https://unctad.org/themes/custom/newyork_b5/images/logo_small_white_en.png" className="logo" alt="UN Trade and Development (UNCTAD)" />
-        </div>
-        <div className="title_container">
+        <div className="top">
           <h2>Trade and Development Report 2024</h2>
-          <h3>Pact for the Future: Redefining trade and development for global progress</h3>
+        </div>
+        <div className="bottom">
+          <div className="title_container">
+            <h2>Pact for the Future: Redefining trade and development for global progress</h2>
+          </div>
+          <div className="download_buttons_container">
+            <button type="button" className="quick_view">Quick view</button>
+            <button type="button">Full report</button>
+          </div>
+          <div className="chapters_navigation_container">
+            {
+                ['The Marcoeconomics of Discontent', 'The Illusion of a Rebound: International Markts in 2024', 'Golbalization at an Inflection Point', 'Rise, Retreat and Repositioning Lessons from the Global South', 'Global South and the International Tax Architecture'].map((chapter_title, i) => (
+                  <div className="chapter_navigation">
+                    <div className="chapter_title"><h2>{chapter_title}</h2></div>
+                    <div className="chapter_image"><img src="https://img.freepik.com/free-vector/royal-watercolor-valentine-red-background_1340-4006.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1728345600&semt=ais_hybrid" alt="" /></div>
+                    <div className="chapter_meta">
+                      <div className="chapter_number">
+                        {i + 1}
+                        .
+                      </div>
+                      <div className="chapter_download_button" />
+                    </div>
+                  </div>
+                ))
+              }
+          </div>
         </div>
       </div>
       <div className="content_container">
