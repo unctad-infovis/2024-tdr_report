@@ -9,23 +9,24 @@
     background-image: url('./../../assets/img/TDR24_heasder_image_bkg_1600_.jpg');
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 40px;
     min-height: 100vh;
-    flex-wrap: wrap;
-    position: relative;
     padding-bottom: 20px;
+    position: relative;
     .top {
-      border-bottom: 5px solid #fff;
-      border-left: 5px solid #fff;
-      border-right: 5px solid #fff;
-      color: #fff;
-      margin-left: 15px;
-      padding: 7px 15px;
       h2 {
+        border-bottom: 5px solid #fff;
+        border-left: 5px solid #fff;
+        border-right: 5px solid #fff;
+        color: #fff;
+        display: inline-block;
         font-weight: 800;
-        margin: 0;
+        margin-left: 15px;
+        padding: 7px 15px;
       }
     }
     .bottom {
@@ -147,7 +148,8 @@
             font-size: 105px;
             line-height: 95px;
             text-transform: uppercase;
-        }}
+          }
+        }
       }
     }
     h2 {
