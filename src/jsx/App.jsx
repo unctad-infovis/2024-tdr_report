@@ -45,9 +45,6 @@ function App() {
       </div>
       { /* Overview */}
       <div className="content_container">
-        <div className="media_container">
-          <h3>Report highlights</h3>
-        </div>
         <div className="text_container">
           <p>Bacon ipsum dolor amet lorem dolore magna, drumstick frankfurter tenderloin deserunt buffalo sunt sed. Consequat lorem sirloin sint, mollit short loin commodo prosciutto meatball bresaola aliquip esse boudin. Chuck irure frankfurter, nostrud id shankle bresaola alcatra sausage laborum officia. Laborum proident dolore nisi shankle. Pancetta consectetur meatball kielbasa pork loin. Doner ad sint qui.</p>
           <p>Burgdoggen pork belly culpa, mollit laboris capicola aute. Ullamco sint dolore picanha spare ribs incididunt. Chuck bacon pork belly, et est laborum kielbasa. Pork loin sirloin kielbasa ribeye jowl, meatloaf ball tip flank frankfurter dolore. Consectetur dolore beef buffalo lorem reprehenderit.</p>
@@ -78,11 +75,16 @@ function App() {
         </div>
         <div className="content_bottom">
           <h2>
-            <span className="chapter">Chapter 1</span>
-            <br />
-            Equity and justice key to resourcing the energy transition
+            <span className="chapter">Chapter</span>
+            <span className="number">1</span>
+            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
+            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
+          <div className="download_buttons_container">
+            <button type="button" className="full_report">Chapter 1</button>
+          </div>
         </div>
+        <div className="backtotop">Top</div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -130,11 +132,16 @@ function App() {
         </div>
         <div className="content_bottom">
           <h2>
-            <span className="chapter">Chapter 2</span>
-            <br />
-            Trade and Development Board, seventy-first session
+            <span className="chapter">Chapter</span>
+            <span className="number">2</span>
+            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
+            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
+          <div className="download_buttons_container">
+            <button type="button" className="full_report">Chapter 2</button>
+          </div>
         </div>
+        <div className="backtotop">Top</div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -239,11 +246,16 @@ function App() {
         </div>
         <div className="content_bottom">
           <h2>
-            <span className="chapter">Chapter 4</span>
-            <br />
-            UNCTAD16 must deliver for the new global economy
+            <span className="chapter">Chapter</span>
+            <span className="number">4</span>
+            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
+            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
+          <div className="download_buttons_container">
+            <button type="button" className="full_report">Chapter 4</button>
+          </div>
         </div>
+        <div className="backtotop">Top</div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -291,11 +303,16 @@ function App() {
         </div>
         <div className="content_bottom">
           <h2>
-            <span className="chapter">Chapter 5</span>
-            <br />
-            Training workshop on STI policies and the operation and management of STI parks
+            <span className="chapter">Chapter</span>
+            <span className="number">5</span>
+            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
+            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
+          <div className="download_buttons_container">
+            <button type="button" className="full_report">Chapter 5</button>
+          </div>
         </div>
+        <div className="backtotop">Top</div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
