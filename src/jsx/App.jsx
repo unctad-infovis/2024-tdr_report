@@ -84,7 +84,7 @@ function App() {
             <button type="button" className="full_report">Chapter 1</button>
           </div>
         </div>
-        <div className="backtotop">Top</div>
+        <div className="backtotop" />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -141,7 +141,7 @@ function App() {
             <button type="button" className="full_report">Chapter 2</button>
           </div>
         </div>
-        <div className="backtotop">Top</div>
+        <div className="backtotop" />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -198,7 +198,7 @@ function App() {
             <button type="button" className="full_report">Chapter 3</button>
           </div>
         </div>
-        <div className="backtotop">Top</div>
+        <div className="backtotop" />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -255,7 +255,7 @@ function App() {
             <button type="button" className="full_report">Chapter 4</button>
           </div>
         </div>
-        <div className="backtotop">Top</div>
+        <div className="backtotop" />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -312,7 +312,7 @@ function App() {
             <button type="button" className="full_report">Chapter 5</button>
           </div>
         </div>
-        <div className="backtotop">Top</div>
+        <div className="backtotop" />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">

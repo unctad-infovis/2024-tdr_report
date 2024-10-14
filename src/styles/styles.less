@@ -197,10 +197,15 @@
       }
     }
     .backtotop {
+      background-image: url('./../assets/img/icons/icon_top.png');
+      background-size: 100%; 
       bottom: 20px;
       color: #fff;
+      cursor: pointer;
+      height: 40px;
       position: absolute;
       right: 20px;
+      width: 40px;
     }
   }
   >.content_container {
@@ -232,6 +237,19 @@
         .expand_label {
           font-size: 16px;
           line-height: 24px;
+          padding-right: 30px;
+          position: relative;
+          &:after {
+            background-image: url('./../assets/img/icons/icon_expand_white.png');
+            background-size: 100%;
+            content: '';
+            display: inline-block;
+            height: 30px;
+            margin-left: 5px;
+            margin-top: -4px;
+            vertical-align: middle;
+            width: 30px;
+          }
         }
       }
     }
