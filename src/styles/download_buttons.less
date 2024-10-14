@@ -1,0 +1,50 @@
+#app-root-2024-tdr_report_app .app {
+  >.chapter_header .content_bottom,
+  >.header_container .content_bottom {
+    .download_buttons_container {
+      margin: 20px 0;
+      padding: 0 20px;
+      button {
+        border-radius: 20px;
+        border: 0;
+        color: #fff;
+        font-weight: 600;
+        margin-right: 20px;
+        padding: 8px 20px 8px 40px;
+        position: relative;
+        &:before {
+          background-size: 100%;
+          content:'';
+          display: block;
+          height: 30px;
+          left: 6px;
+          top: 6px;
+          position: absolute;
+          width: 30px;
+        }
+        &.overview {
+          background-color: #ffcb05;
+          color: #000;
+          &:before {
+            background-image: url('./../assets/img/icons/icon_eye_black.png');
+          }
+          &:hover {
+            background-color: #a71f36;
+            color: #fff;
+          }
+        }
+        &.full_report {
+          background-color: #a71f36;
+          color: #fff;
+          &:before {
+            background-image: url('./../assets/img/icons/icon_download_white.png');
+          }
+          &:hover {
+            background-color: #ffcb05;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}

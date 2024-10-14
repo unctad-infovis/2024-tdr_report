@@ -1,13 +1,17 @@
 @import 'colors.less';
+@import './download_buttons.less';
+
 
 @import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 #app-root-2024-tdr_report_app .app {
+  margin: auto auto;
+  
   font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
   >.header_container {
     align-content: space-between;
     background-color: #8b0000;
-    background-image: url('./../assets/img/TDR24_heasder_image_bkg_1600_.jpg');
-    background-position: 50% 50%;
+    background-image: url('./../assets/img/TDR24_web_header_image_1920_wide_.jpg');
+    background-position: 50% 0;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -17,58 +21,48 @@
     min-height: 100vh;
     padding-bottom: 20px;
     position: relative;
-    .top {
+    .content_top {
+      padding: 20px 0 0 20px;
       h2 {
-        border-bottom: 5px solid #fff;
-        border-left: 5px solid #fff;
-        border-right: 5px solid #fff;
+        width: 300px;
         color: #fff;
-        display: inline-block;
-        font-weight: 800;
-        margin-left: 15px;
-        padding: 7px 15px;
-      }
-    }
-    .bottom {
-      .title_container {
-        box-sizing: content-box;
-        color: rgba(255, 255, 255, 1);
-        max-width: 600px;
-        min-width: 300px;
-        padding: 0px 20px;
-        position: relative;
-        h3 {
-          margin: 0;
-        }
-      }
-      .download_buttons_container {
-        padding: 20px 20px;
-        button {
-          background-color: #000;
-          border-radius: 20px;
-          border: 0;
-          color: #fff;
-          font-weight: 600;
-          margin-right: 20px;
-          padding: 7px 15px;
-          &.quick_view {
-            background-color: #ffcb05;
-            color: #000;
+        .year {
+          span {
+            color: #ffcb05;
           }
         }
+        .name {
+
+        }
+      }
+    }
+    .content_bottom {
+      h2 {
+        color: #fff;
+        padding: 0 20px;
       }
       .chapters_navigation_container {
         display: flex;
         padding: 0 10px;
         width: 100%;
         .chapter_navigation {
-          border-color: #8b0000;
+          border-color: #004987;
           border-style: solid;
           border-width: 5px;
+          cursor: pointer;
           margin: 0 10px;
           max-width: 180px;
+          &:hover {
+            border-color: #a71f36;
+            .chapter_title {
+              background-color: #a71f36;
+            }
+            .chapter_meta {
+              background-color: #a71f36;
+            }
+          }
           .chapter_title {
-            background-color: #8b0000;
+            background-color: #004987;
             height: 120px;
             padding: 5px 5px 5px 5px;
             h2 {
@@ -80,12 +74,28 @@
             background: transparent;
             padding: 5px;
             position: relative;
-            img {
-              width: 100%;
+            div {
+              aspect-ratio: 1/1;
+              background-size: auto 100%;
+              &.chapter_image_1 {
+                background-image: url('https://img.freepik.com/free-vector/royal-watercolor-valentine-red-background_1340-4006.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1728345600&semt=ais_hybrid');
+              }
+              &.chapter_image_2 {
+                background-image: url('./../assets/img/ch_2.jpg');
+              }
+              &.chapter_image_3 {
+                background-image: url('./../assets/img/ch_3.jpg');
+              }
+              &.chapter_image_4 {
+                background-image: url('./../assets/img/ch_4.jpg');
+              }
+              &.chapter_image_5 {
+                background-image: url('./../assets/img/ch_5.jpg');
+              }
             }
           }
           .chapter_meta {
-            background-color: #8b0000;
+            background-color: #004987;
             display: flex;
             justify-content: space-between;
             padding: 5px 5px 5px 5px;
@@ -96,9 +106,14 @@
             }
             .chapter_download_button {
               color: #fff;
-              &:after {
-                content: 'ICON';
+              &:before {
+                background-image: url('./../assets/img/icons/icon_download_white.png');
+                background-size: 100%;
+                content: '';
                 display: block;
+                margin-top: 4px;
+                height: 30px;
+                width: 30px;
               }
             }
           }
@@ -106,25 +121,136 @@
       }
     }
   }
+  >.chapter_header {
+    align-content: space-between;
+    aspect-ratio: 16/9;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    justify-content: flex-start;
+    margin: auto auto;
+    max-width: 1350px;
+    width: 100%;
+    position: relative;
+    &.chapter_header_1 {
+      background-image: url('https://img.freepik.com/free-vector/royal-watercolor-valentine-red-background_1340-4006.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1728345600&semt=ais_hybrid');
+    }
+    &.chapter_header_2 {
+      background-image: url('./../assets/img/ch2.jpg');
+    }
+    &.chapter_header_3 {
+      background-image: url('./../assets/img/ch3.jpg');
+    }
+    &.chapter_header_4 {
+      background-image: url('./../assets/img/ch4.jpg');
+    }
+    &.chapter_header_5 {
+      background-image: url('./../assets/img/ch5.jpg');
+    }
+    .content_top {
+      border-bottom: 15px solid #004987;
+      padding: 20px 0 0 20px;
+      h2 {
+        color: #fff;
+        font-size: 20px;
+        .year {
+          display: inline-block;
+          margin-right: 10px;
+          span {
+            color: #ffcb05;
+          }
+        }
+        .name {
+          display: inline-block;
+        }
+      }
+    }
+    .content_bottom {
+      padding: 20px 0 0 20px;
+      h2 {
+        color: #fff;
+        max-width: 600px;
+        padding: 0 20px;
+        span {
+          display: block;
+          &.chapter {
+            font-size: 20px;
+          }
+          &.number {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 100px;
+            margin: 0 0 10px 0;
+          }
+          &.name {
+            font-size: 30px;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+          }
+          &.desc {
+            font-size: 22px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    .backtotop {
+      bottom: 20px;
+      color: #fff;
+      position: absolute;
+      right: 20px;
+    }
+  }
   >.content_container {
-    margin: auto auto 40px auto;
-    max-width: 900px;
     background-color: #fff;
-    padding: 20px;
-    &.two-column {
+    margin-bottom: 40px;
+    .chapter_menu_container {
+      background-color: #004987;
+      border-top: 4px solid rgba(255,255, 255, 0.3);
+      margin: auto auto;
       max-width: 1350px;
+      width: 100%;
+      .chapter_menu_button {
+        background-color: #004987;
+        border: 0;
+        color: #fff;
+        display: flex;
+        font-size: 20px;
+        justify-content: space-between;
+        line-height: 24px;
+        margin: auto auto;
+        max-width: 1000px;
+        padding: 10px 0;
+        text-align: left;
+        width: 100%;
+        .name {
+
+        }
+        .expand_label {
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+    .recommendations,
+    .content {
+      background-color: #fff;
+      margin: auto auto auto auto;
+      max-width: 900px;
+      overflow: hidden;
+      transition: height .5s ease;
+      &:not(.active) {
+        display: none;
+      }
+      .inner {
+        margin: 20px 0;
+      }
     }
     .media_container {
       margin-bottom: 20px;
-      video {
-        aspect-ratio: 16/9;
-        background-color: #000;
-        height: 100%;
-        width: 100%;
-        &.slim {
-          height: 300px;
-        }
-      }
       .image_container {
         margin: auto auto;
         max-width: 600px;
@@ -141,15 +267,6 @@
       margin: auto auto;
       p {
         margin: 0 0 20px 0;
-        &.first {
-          &:first-letter {
-            float:left;
-            font-weight: bold;
-            font-size: 105px;
-            line-height: 95px;
-            text-transform: uppercase;
-          }
-        }
       }
     }
     h2 {
@@ -165,8 +282,21 @@
       }
     }
   }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .app-root-2024-tdr_report .app {
   font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
   .flag {
