@@ -54,77 +54,84 @@
           box-sizing: border-box;
           display: flex;
           padding: 0 20px 0 10px;
-          .chapter_navigation {
-            border-color: #004987;
-            border-style: solid;
-            border-width: 5px;
+          button {
+            background: none;
+            border: 0;
             cursor: pointer;
-            margin: 0 10px;
-            max-width: 180px;
-            &:hover {
-              border-color: #a71f36;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            .chapter_navigation {
+              border-color: #004987;
+              border-style: solid;
+              border-width: 5px;
+              margin: 0 10px;
+              max-width: 180px;
+              &:hover {
+                border-color: #a71f36;
+                .chapter_title {
+                  background-color: #a71f36;
+                }
+                .chapter_meta {
+                  background-color: #a71f36;
+                }
+              }
               .chapter_title {
-                background-color: #a71f36;
+                background-color: #004987;
+                height: 120px;
+                padding: 5px 5px 5px 5px;
+                h2 {
+                  color: #fff;
+                  font-size: 18px;
+                  margin: 0;
+                  padding: 0;
+                }
+              }
+              .chapter_image {
+                background: transparent;
+                padding: 5px;
+                position: relative;
+                div {
+                  aspect-ratio: 1/1;
+                  background-size: auto 100%;
+                  &.chapter_image_1 {
+                    background-image: url('./../assets/img/l/ch1.jpg');
+                  }
+                  &.chapter_image_2 {
+                    background-image: url('./../assets/img/l/ch2.jpg');
+                  }
+                  &.chapter_image_3 {
+                    background-image: url('./../assets/img/l/ch3.jpg');
+                  }
+                  &.chapter_image_4 {
+                    background-image: url('./../assets/img/l/ch4.jpg');
+                  }
+                  &.chapter_image_5 {
+                    background-image: url('./../assets/img/l/ch5.jpg');
+                  }
+                }
               }
               .chapter_meta {
-                background-color: #a71f36;
-              }
-            }
-            .chapter_title {
-              background-color: #004987;
-              height: 120px;
-              padding: 5px 5px 5px 5px;
-              h2 {
-                color: #fff;
-                font-size: 18px;
-                margin: 0;
-                padding: 0;
-              }
-            }
-            .chapter_image {
-              background: transparent;
-              padding: 5px;
-              position: relative;
-              div {
-                aspect-ratio: 1/1;
-                background-size: auto 100%;
-                &.chapter_image_1 {
-                  background-image: url('./../assets/img/l/ch1.jpg');
+                background-color: #004987;
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 5px 5px 5px;
+                .chapter_number {
+                  color: #fff;
+                  font-size: 24px;
+                  font-weight: 900;
                 }
-                &.chapter_image_2 {
-                  background-image: url('./../assets/img/l/ch2.jpg');
-                }
-                &.chapter_image_3 {
-                  background-image: url('./../assets/img/l/ch3.jpg');
-                }
-                &.chapter_image_4 {
-                  background-image: url('./../assets/img/l/ch4.jpg');
-                }
-                &.chapter_image_5 {
-                  background-image: url('./../assets/img/l/ch5.jpg');
-                }
-              }
-            }
-            .chapter_meta {
-              background-color: #004987;
-              display: flex;
-              justify-content: space-between;
-              padding: 5px 5px 5px 5px;
-              .chapter_number {
-                color: #fff;
-                font-size: 24px;
-                font-weight: 900;
-              }
-              .chapter_download_button {
-                color: #fff;
-                &:before {
-                  background-image: url('./../assets/img/icons/icon_download_white.png');
-                  background-size: 100%;
-                  content: '';
-                  display: block;
-                  height: 30px;
-                  margin-top: 4px;
-                  width: 30px;
+                .chapter_download_button {
+                  color: #fff;
+                  &:before {
+                    background-image: url('./../assets/img/icons/icon_download_white.png');
+                    background-size: 100%;
+                    content: '';
+                    display: block;
+                    height: 30px;
+                    margin-top: 4px;
+                    width: 30px;
+                  }
                 }
               }
             }
@@ -212,6 +219,8 @@
       }
     }
     .backtotop {
+      border: 0;
+      background-color: transparent;
       background-image: url('./../assets/img/icons/icon_top.png');
       background-size: 100%; 
       bottom: 20px;
@@ -301,6 +310,28 @@
         font-size: 18px;
         line-height: 24px;
         margin: 0 0 20px 0;
+        padding: 0;
+        li {
+          list-style-type: none;
+          margin: 0 0 10px 0;
+          padding: 0 0 0 25px;
+          position: relative;
+          &:before {
+            background-image: url(https://storage.unctad.org/2024-der_report/assets/img/2024-der_report_chevron_arrow_yellow.png);
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            content: '';
+            display: inline-block;
+            height: 20px;
+            left: 0;
+            left: 0;
+            position: absolute;
+            top: 2px;
+            width: 20px;
+            z-index: 1;
+          }
+        }
       }
       p {
         font-size: 18px;
@@ -311,6 +342,30 @@
         font-size: 18px;
         line-height: 24px;
         margin: 0 0 20px 0;
+        padding: 40px 0 0 100px;
+        position: relative;
+        .quote {
+          margin-bottom: 20px;
+        }
+        .author {
+          .name {
+            font-weight: 700;
+            display: block;
+          }
+        }
+        &:before {
+          background-image: url('./../assets/img/icons/icon_quote_big.png');
+          background-repeat: no-repeat;
+          background-size: 100%;
+          content: '';
+          display: inline-block;
+          height: calc(129px / 1.5);
+          left: 0;
+          position: absolute;
+          top: 0;
+          vertical-align: middle;
+          width: calc(139px / 1.5);
+        }
       }
     }
     h2 {

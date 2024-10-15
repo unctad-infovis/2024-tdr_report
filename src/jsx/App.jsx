@@ -1,10 +1,38 @@
 import React, { useRef } from 'react';
 import '../styles/styles.less';
 
+// https://www.npmjs.com/package/scroll-into-view
+import scrollIntoView from 'scroll-into-view';
+
 import slideToggle from './helpers/slideToggle.js';
 
 function App() {
   const appRef = useRef();
+
+  // const analytics = window.gtag || undefined;
+  // if (typeof analytics !== 'undefined') {
+  //   analytics('event', 'Scroll', { event_category: '2022-rmt_report', event_label: 'Section 1', transport_type: 'beacon' });
+  // }
+
+  const anchorClick = (target, name) => {
+    console.log(name);
+    // track(name);
+    setTimeout(() => {
+      scrollIntoView(appRef.current.querySelector(target), {
+        align: {
+          left: 0,
+          leftOffset: 0,
+          lockX: false,
+          lockY: false,
+          top: 0,
+          topOffset: 30
+        },
+        cancellable: false,
+        time: 1000
+      });
+    }, 50);
+  };
+
   return (
     <div className="app" ref={appRef}>
       { /* Header */}
@@ -21,23 +49,25 @@ function App() {
         <div className="content_bottom">
           <h2>Pact for the Future: Redefining trade and development for global progress</h2>
           <div className="download_buttons_container">
-            <button type="button" className="overview">Overview</button>
-            <button type="button" className="full_report">Full report</button>
+            <a href="#download" type="button" className="overview">Overview</a>
+            <a href="#download" type="button" className="pdf_download">Full report</a>
           </div>
           <div className="chapters_navigation_container">
             {
               ['The Marcoeconomics of Discontent', 'The Illusion of a Rebound: International Markts in 2024', 'Golbalization at an Inflection Point', 'Rise, Retreat and Repositioning Lessons from the Global South', 'Global South and the International Tax Architecture'].map((chapter_title, i) => (
-                <div className="chapter_navigation" key={chapter_title}>
-                  <div className="chapter_title"><h2>{chapter_title}</h2></div>
-                  <div className="chapter_image"><div className={`chapter_image_${i + 1}`} /></div>
-                  <div className="chapter_meta">
-                    <div className="chapter_number">
-                      {i + 1}
-                      .
+                <button onClick={() => anchorClick(`.chapter_header_${i + 1}`)} type="button">
+                  <div className="chapter_navigation" key={chapter_title}>
+                    <div className="chapter_title"><h2>{chapter_title}</h2></div>
+                    <div className="chapter_image"><div className={`chapter_image_${i + 1}`} /></div>
+                    <div className="chapter_meta">
+                      <div className="chapter_number">
+                        {i + 1}
+                        .
+                      </div>
+                      <a className="chapter_download_button" href="#download" aria-label="Download" />
                     </div>
-                    <div className="chapter_download_button" />
                   </div>
-                </div>
+                </button>
               ))
             }
           </div>
@@ -62,8 +92,11 @@ function App() {
             <li>The Global South and its quest for long-term development finance</li>
           </ul>
           <blockquote>
-            <div>”We must rethink, reform and revive. Rethink global development strategies, reform the international financial system and revive the commitment to multilateralism.”</div>
-            <div>-- Rebeca Grynspan, Secretary-General of UN Trade and Development (UNCTAD)</div>
+            <div className="quote">We must rethink, reform and revive. Rethink global development strategies, reform the international financial system and revive the commitment to multilateralism.</div>
+            <div className="author">
+              <span className="name">Rebeca Grynspan</span>
+              <span className="title">Secretary-General of UN Trade and Development (UNCTAD)</span>
+            </div>
           </blockquote>
         </div>
       </div>
@@ -87,10 +120,10 @@ function App() {
             <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
           <div className="download_buttons_container">
-            <button type="button" className="full_report">Chapter 1</button>
+            <a href="download" type="button" className="pdf_download">Chapter 1</a>
           </div>
         </div>
-        <div className="backtotop" />
+        <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -101,11 +134,13 @@ function App() {
         </div>
         <div className="content content_1">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
         <div className="chapter_menu_container">
@@ -116,11 +151,13 @@ function App() {
         </div>
         <div className="recommendations recommendations_1">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
       </div>
@@ -144,10 +181,10 @@ function App() {
             <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
           <div className="download_buttons_container">
-            <button type="button" className="full_report">Chapter 2</button>
+            <a href="download" type="button" className="pdf_download">Chapter 2</a>
           </div>
         </div>
-        <div className="backtotop" />
+        <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -158,11 +195,13 @@ function App() {
         </div>
         <div className="content content_2">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
         <div className="chapter_menu_container">
@@ -173,11 +212,13 @@ function App() {
         </div>
         <div className="recommendations recommendations_2">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
       </div>
@@ -201,10 +242,10 @@ function App() {
             <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
           <div className="download_buttons_container">
-            <button type="button" className="full_report">Chapter 3</button>
+            <a href="download" type="button" className="pdf_download">Chapter 3</a>
           </div>
         </div>
-        <div className="backtotop" />
+        <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -215,11 +256,13 @@ function App() {
         </div>
         <div className="content content_3">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
         <div className="chapter_menu_container">
@@ -230,11 +273,13 @@ function App() {
         </div>
         <div className="recommendations recommendations_3">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
       </div>
@@ -258,10 +303,10 @@ function App() {
             <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
           <div className="download_buttons_container">
-            <button type="button" className="full_report">Chapter 4</button>
+            <a href="download" type="button" className="pdf_download">Chapter 4</a>
           </div>
         </div>
-        <div className="backtotop" />
+        <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -272,11 +317,13 @@ function App() {
         </div>
         <div className="content content_4">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
         <div className="chapter_menu_container">
@@ -287,11 +334,13 @@ function App() {
         </div>
         <div className="recommendations recommendations_4">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
       </div>
@@ -315,10 +364,10 @@ function App() {
             <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
           </h2>
           <div className="download_buttons_container">
-            <button type="button" className="full_report">Chapter 5</button>
+            <a href="download" type="button" className="pdf_download">Chapter 5</a>
           </div>
         </div>
-        <div className="backtotop" />
+        <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
@@ -329,11 +378,13 @@ function App() {
         </div>
         <div className="content content_5">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
         <div className="chapter_menu_container">
@@ -344,11 +395,13 @@ function App() {
         </div>
         <div className="recommendations recommendations_5">
           <div className="inner">
-            <p>
-              Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-            </p>
-            <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-            <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            <div className="text_container">
+              <p>
+                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
+              </p>
+              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
+              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+            </div>
           </div>
         </div>
       </div>
