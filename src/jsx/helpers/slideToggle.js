@@ -1,8 +1,10 @@
-const slideToggle = (appRef, chapter, type) => {
+const slideToggle = (appRef, chapter, type, el) => {
   const container = appRef.current.querySelector(`.${type}.${type}_${chapter}`);
+  const button = el.currentTarget;
   /** Slide down. */
   if (!container.classList.contains('active')) {
     container.classList.add('active');
+    button.classList.add('active');
     container.style.height = 'auto';
 
     /** Get the computed height of the container. */
@@ -26,6 +28,7 @@ const slideToggle = (appRef, chapter, type) => {
 
     /** Remove the `active` class when the animation ends. */
     container.addEventListener('transitionend', () => {
+      button.classList.remove('active');
       container.classList.remove('active');
     }, { once: true });
   }
