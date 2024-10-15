@@ -46,6 +46,7 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
+        <div className="between" />
         <div className="content_bottom">
           <h2>Pact for the Future: Redefining trade and development for global progress</h2>
           <div className="download_buttons_container">
@@ -118,9 +119,7 @@ function App() {
             <span className="number">1</span>
             <span className="name">The macroeconomics of discontent: Current trends and challenges in the global economy</span>
             <span className="desc">
-              <strong>This section examines the impacts of the new, “low normal” for the global economy.</strong>
-              {' '}
-              Global growth is projected to stagnate at 2.7%, well below what’s needed to tackle development challenges, especially amid rising public debt and shrinking household income.
+              This section examines the impacts of the global economy’s new, “low normal” of 2.7% growth
             </span>
           </h2>
           <div className="download_buttons_container">
