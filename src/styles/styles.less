@@ -19,99 +19,113 @@
     min-height: 100vh;
     padding-bottom: 20px;
     position: relative;
-    .content_top {
-      padding: 20px 0 0 20px;
-      h2 {
-        width: 300px;
-        color: #fff;
-        .year {
-          span {
-            color: #ffcb05;
+    > div {
+      margin: 0 auto;
+      max-width: 1350px;
+      &.content_top {
+        padding: 20px 0 0 20px;
+        width: 100%;
+        h2 {
+          color: #fff;
+          font-size: 30px;
+          line-height: 34px;
+          margin: 0 0 20px 0;
+          max-width: 350px;
+          .year {
+            span {
+              color: #ffcb05;
+            }
+          }
+          .name {
+
           }
         }
-        .name {
-
-        }
       }
-    }
-    .content_bottom {
-      h2 {
-        color: #fff;
-        padding: 0 20px;
-      }
-      .chapters_navigation_container {
-        display: flex;
-        padding: 0 10px;
+      &.content_bottom {
         width: 100%;
-        .chapter_navigation {
-          border-color: #004987;
-          border-style: solid;
-          border-width: 5px;
-          cursor: pointer;
-          margin: 0 10px;
-          max-width: 180px;
-          &:hover {
-            border-color: #a71f36;
+        >h2 {
+          color: #fff;
+          font-size: 38px;
+          line-height: 42px;
+          max-width: 700px;
+          padding: 0 20px;
+        }
+        .chapters_navigation_container {
+          box-sizing: border-box;
+          display: flex;
+          padding: 0 20px 0 10px;
+          .chapter_navigation {
+            border-color: #004987;
+            border-style: solid;
+            border-width: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            max-width: 180px;
+            &:hover {
+              border-color: #a71f36;
+              .chapter_title {
+                background-color: #a71f36;
+              }
+              .chapter_meta {
+                background-color: #a71f36;
+              }
+            }
             .chapter_title {
-              background-color: #a71f36;
+              background-color: #004987;
+              height: 120px;
+              padding: 5px 5px 5px 5px;
+              h2 {
+                color: #fff;
+                font-size: 18px;
+                margin: 0;
+                padding: 0;
+              }
+            }
+            .chapter_image {
+              background: transparent;
+              padding: 5px;
+              position: relative;
+              div {
+                aspect-ratio: 1/1;
+                background-size: auto 100%;
+                &.chapter_image_1 {
+                  background-image: url('./../assets/img/l/ch1.jpg');
+                }
+                &.chapter_image_2 {
+                  background-image: url('./../assets/img/l/ch2.jpg');
+                }
+                &.chapter_image_3 {
+                  background-image: url('./../assets/img/l/ch3.jpg');
+                }
+                &.chapter_image_4 {
+                  background-image: url('./../assets/img/l/ch4.jpg');
+                }
+                &.chapter_image_5 {
+                  background-image: url('./../assets/img/l/ch5.jpg');
+                }
+              }
             }
             .chapter_meta {
-              background-color: #a71f36;
-            }
-          }
-          .chapter_title {
-            background-color: #004987;
-            height: 120px;
-            padding: 5px 5px 5px 5px;
-            h2 {
-              color: #fff;
-              font-size: 18px;
-            }
-          }
-          .chapter_image {
-            background: transparent;
-            padding: 5px;
-            position: relative;
-            div {
-              aspect-ratio: 1/1;
-              background-size: auto 100%;
-              &.chapter_image_1 {
-                background-image: url('https://img.freepik.com/free-vector/royal-watercolor-valentine-red-background_1340-4006.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1728345600&semt=ais_hybrid');
+              background-color: #004987;
+              display: flex;
+              justify-content: space-between;
+              padding: 5px 5px 5px 5px;
+              .chapter_number {
+                color: #fff;
+                font-size: 24px;
+                font-weight: 900;
               }
-              &.chapter_image_2 {
-                background-image: url('./../assets/img/ch2.jpg');
-              }
-              &.chapter_image_3 {
-                background-image: url('./../assets/img/ch3.jpg');
-              }
-              &.chapter_image_4 {
-                background-image: url('./../assets/img/ch4.jpg');
-              }
-              &.chapter_image_5 {
-                background-image: url('./../assets/img/ch5.jpg');
-              }
-            }
-          }
-          .chapter_meta {
-            background-color: #004987;
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 5px 5px 5px;
-            .chapter_number {
-              color: #fff;
-              font-size: 24px;
-              font-weight: 900;
-            }
-            .chapter_download_button {
-              color: #fff;
-              &:before {
-                background-image: url('./../assets/img/icons/icon_download_white.png');
-                background-size: 100%;
-                content: '';
-                display: block;
-                margin-top: 4px;
-                height: 30px;
-                width: 30px;
+              .chapter_download_button {
+                color: #fff;
+                &:before {
+                  background-image: url('./../assets/img/icons/icon_download_white.png');
+                  background-size: 100%;
+                  content: '';
+                  display: block;
+                  height: 30px;
+                  margin-top: 4px;
+                  width: 30px;
+                }
               }
             }
           }
@@ -127,33 +141,34 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
-    min-height: 600px;
     justify-content: flex-start;
     margin: auto auto;
     max-width: 1350px;
-    width: 100%;
+    min-height: 600px;
     position: relative;
+    width: 100%;
     &.chapter_header_1 {
-      background-image: url('https://img.freepik.com/free-vector/royal-watercolor-valentine-red-background_1340-4006.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1728345600&semt=ais_hybrid');
+      background-image: url('./../assets/img/l/ch1.jpg');
     }
     &.chapter_header_2 {
-      background-image: url('./../assets/img/ch2.jpg');
+      background-image: url('./../assets/img/l/ch2.jpg');
     }
     &.chapter_header_3 {
-      background-image: url('./../assets/img/ch3.jpg');
+      background-image: url('./../assets/img/l/ch3.jpg');
     }
     &.chapter_header_4 {
-      background-image: url('./../assets/img/ch4.jpg');
+      background-image: url('./../assets/img/l/ch4.jpg');
     }
     &.chapter_header_5 {
-      background-image: url('./../assets/img/ch5.jpg');
+      background-image: url('./../assets/img/l/ch5.jpg');
     }
-    .content_top {
+    >.content_top {
       border-bottom: 15px solid #004987;
       padding: 20px 0 0 20px;
-      h2 {
+      >h2 {
         color: #fff;
-        font-size: 20px;
+        font-size: 22px;
+        margin: 0 0 20px 0;
         padding: 0 20px;
         .year {
           display: inline-block;
@@ -237,7 +252,6 @@
         .expand_label {
           font-size: 16px;
           line-height: 24px;
-          padding-right: 30px;
           position: relative;
           &:after {
             background-image: url('./../assets/img/icons/icon_expand_white.png');
@@ -281,22 +295,34 @@
       }
     }
     .text_container {
-      max-width: 700px;
       margin: auto auto;
+      max-width: 700px;
+      ul {
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 0 20px 0;
+      }
       p {
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 0 20px 0;
+      }
+      blockquote {
+        font-size: 18px;
+        line-height: 24px;
         margin: 0 0 20px 0;
       }
     }
     h2 {
       margin: 0 0 20px auto;
       .chapter {
-        padding: 2px 10px;
+        background-color: #009edb;
         color: #fff;
         display: inline-block;
-        margin: 0 0 10px 0;
         font-size: 20px;
+        margin: 0 0 10px 0;
+        padding: 2px 10px;
         text-transform: uppercase;
-        background-color: #009edb;
       }
     }
   }

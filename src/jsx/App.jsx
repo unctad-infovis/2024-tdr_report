@@ -43,22 +43,28 @@ function App() {
           </div>
         </div>
       </div>
+
       { /* Overview */}
       <div className="content_container">
         <div className="text_container">
-          <p>Bacon ipsum dolor amet lorem dolore magna, drumstick frankfurter tenderloin deserunt buffalo sunt sed. Consequat lorem sirloin sint, mollit short loin commodo prosciutto meatball bresaola aliquip esse boudin. Chuck irure frankfurter, nostrud id shankle bresaola alcatra sausage laborum officia. Laborum proident dolore nisi shankle. Pancetta consectetur meatball kielbasa pork loin. Doner ad sint qui.</p>
-          <p>Burgdoggen pork belly culpa, mollit laboris capicola aute. Ullamco sint dolore picanha spare ribs incididunt. Chuck bacon pork belly, et est laborum kielbasa. Pork loin sirloin kielbasa ribeye jowl, meatloaf ball tip flank frankfurter dolore. Consectetur dolore beef buffalo lorem reprehenderit.</p>
-          <p>Anim dolore qui jerky, ball tip ut aliquip ullamco. Filet mignon turkey in cupidatat consectetur flank sed. Kevin swine ut, sed filet mignon t-bone exercitation in beef burgdoggen. Adipisicing ullamco beef fugiat lorem incididunt magna qui capicola dolore. Magna hamburger buffalo, pancetta jerky reprehenderit ball tip ut venison commodo. Cupim dolor rump turkey. Ham hock porchetta ea hamburger, excepteur labore elit ut ut pork belly dolore in ut spare ribs.</p>
-        </div>
-        <div className="media_container">
-          <div className="image_container" />
-        </div>
-        <div className="text_container">
-          <p>
-            Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-          </p>
-          <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-          <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+          <p>The 2024 Trade and Development Report calls for a fundamental rethink of development strategies amid a global slowdown and rising social discontent.</p>
+          <p>It warns that the global economy, strained by crises and climate change, is stuck in slow growth and weak investment, unable to meet development needs.</p>
+          <p>Meanwhile, rapid technological changes and rising geopolitical tensions are reshaping trade and production patterns, potentially worsening inequalities between developed and developing countries.</p>
+          <p>In a sluggish economy, developing nations face tough policy choices as they contend with rising debt, high energy prices and growing demands for health and social services.</p>
+          <p>Despite these challenges, the report identifies opportunities, such as soaring demand for critical minerals for the energy transition and increased South-South trade. However, without strategic policy shifts, the opportunities could be lost.</p>
+          <p>The report urges developing countries to prioritize economic resilience and diversification, moving beyond manufacturing-led export models. It calls for stronger multilateral action to improve tax cooperation, ensure an equitable green transition and build a development-focused global financial system.</p>
+          <p>It examines five core themes:</p>
+          <ul>
+            <li>A new, low normal for the global economy</li>
+            <li>The changing structure of trade and trade policies</li>
+            <li>The dawn of the service economy</li>
+            <li>Financialization in a new commodity cycle</li>
+            <li>The Global South and its quest for long-term development finance</li>
+          </ul>
+          <blockquote>
+            <div>”We must rethink, reform and revive. Rethink global development strategies, reform the international financial system and revive the commitment to multilateralism.”</div>
+            <div>-- Rebeca Grynspan, Secretary-General of UN Trade and Development (UNCTAD)</div>
+          </blockquote>
         </div>
       </div>
 
