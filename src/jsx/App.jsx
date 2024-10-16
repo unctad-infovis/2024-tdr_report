@@ -55,7 +55,7 @@ function App() {
           </div>
           <div className="chapters_navigation_container">
             {
-              ['The macroeconomics of discontent', 'The Illusion of a Rebound: International Markts in 2024', 'Golbalization at an Inflection Point', 'Rise, Retreat and Repositioning Lessons from the Global South', 'Global South and the International Tax Architecture'].map((chapter_title, i) => (
+              ['The macro-economics of discontent', 'The illusion of a rebound', 'Globalization at an inflection point', 'Rise, retreat and repositioning', 'The Global South and new international tax architecture'].map((chapter_title, i) => (
                 <button onClick={() => anchorClick(`.chapter_header_${i + 1}`)} type="button">
                   <div className="chapter_navigation" key={chapter_title}>
                     <div className="chapter_title"><h2>{chapter_title}</h2></div>
