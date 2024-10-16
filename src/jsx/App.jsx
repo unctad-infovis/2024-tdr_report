@@ -119,7 +119,7 @@ function App() {
             <span className="number">1</span>
             <span className="name">The macroeconomics of discontent: Current trends and challenges in the global economy</span>
             <span className="desc">
-              This section examines the impacts of the global economy’s new, “low normal” of 2.7% growth
+              This section examines the impacts of the global economy’s new, “low normal” of 2.7% growth – a rate far below what’s needed to meet development goals
             </span>
           </h2>
           <div className="download_buttons_container">
@@ -207,8 +207,8 @@ function App() {
           <h2>
             <span className="chapter">Chapter</span>
             <span className="number">2</span>
-            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
-            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
+            <span className="name">The illusion of a rebound: International markets in 2024</span>
+            <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
           </h2>
           <div className="download_buttons_container">
             <a href="download" type="button" className="pdf_download">Chapter 2</a>
@@ -230,11 +230,12 @@ function App() {
         <div className="content content_2">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>Between 1995 and 2007, trade grew at twice the rate of global GDP. But since the 2008–2009 financial crisis, trade growth relative to GDP has stalled.</p>
+              <p>Another key shift is the waning role of merchandise trade, which declined by 1.2% in 2023. This was the first time it contracted while the global economy grew.</p>
+              <p>In 2024, merchandise trade is expected to rebound by 2% in real terms (after adjusting for inflation), but trade in services is set to continue growing by 5%, increasing its share of the global total to nearly 25% – a share that is expected to keep rising.</p>
+              <p>For low- and middle-income countries, which rely heavily on trade, these shifts compound development challenges.</p>
+              <p>However, trade between developing countries (South-South trade) more than doubled to $5.6 trillion between 2007 and 2023, offering growth and regional integration opportunities. The green transition also holds promise, with demand soaring for minerals from developing countries that are critical for electric vehicles and renewable energy.</p>
+              <p>Yet new technologies are concentrated in the hands of companies in advanced economies, and geopolitical tensions could accelerate home-shoring, which could limit opportunities for developing countries.</p>
             </div>
           </div>
         </div>
@@ -249,11 +250,29 @@ function App() {
         <div className="recommendations recommendations_2">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>The slowdown in merchandise trade and rapid digitalization call for a rethink of development strategies, as the traditional model of manufacturing-led export growth becomes less effective and low-cost labour loses its importance in attracting foreign investment.</p>
+              <ol>
+                <li>
+                  <strong>Strengthen domestic industries.</strong>
+                  <br />
+                  Developing countries should invest in renewable energy and implement strategic industrial policies to promote local production, reducing reliance on imported fossil fuels and vulnerabilities to global shocks.
+                </li>
+                <li>
+                  <strong>Foster regional trade and integration:</strong>
+                  <br />
+                  Leveraging agreements like the African Continental Free Trade Agreement (AfCFTA) and ASEAN Economic Community can help developing countries navigate the risks of fragmented trade and build more diverse and resilient economies.
+                </li>
+                <li>
+                  <strong>Enhance multilateral cooperation.</strong>
+                  <br />
+                  Institutions such as the World Trade Organization (WTO) should help manage trade fragmentation risks and ensure developing countries have a voice in shaping global trade rules.
+                </li>
+                <li>
+                  <strong>Govern new technologies.</strong>
+                  <br />
+                  Urgent political action is needed to regulate emerging technologies, especially artificial intelligence. Without global governance and agreed standards, the control of this key element of the world economy would be left in the hands of large corporations and private regulatory bodies, deepening inequalities and risks.
+                </li>
+              </ol>
             </div>
           </div>
         </div>
@@ -274,8 +293,8 @@ function App() {
           <h2>
             <span className="chapter">Chapter</span>
             <span className="number">3</span>
-            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
-            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
+            <span className="name">Globalization at an inflection point</span>
+            <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
           </h2>
           <div className="download_buttons_container">
             <a href="download" type="button" className="pdf_download">Chapter 3</a>
@@ -297,11 +316,11 @@ function App() {
         <div className="content content_3">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>Manufacturing is becoming less effective as a growth strategy for developing countries. The competitive advantage of cheap labour no longer aligns with modern manufacturing’s focus on skill and capital-intensive production.</p>
+              <p>In 2023, global merchandise trade slowed by 1.2%, while trade in services grew by 5% in real terms (after adjusting for inflation). Services now make up nearly 25% of global trade, and this share is expected to grow further, raising hopes that services could become a new growth engine.</p>
+              <p>However, relying on trade in services as the main driver for development carries risks, especially for developing countries, which account for less than 30% of global services export revenues.</p>
+              <p>The unlevel playing field is evident in the fast-growing creative services sector, valued at $1.4 trillion in 2022, where developed countries account for 80% of exports. Also, 70% of multinational enterprises providing international services are headquartered in advanced economies.</p>
+              <p>The growing importance of intangible assets like brands, software, data and patented technologies in global supply chains could further widen the gap between developed and developing countries. In 2023, investment in intangible assets grew three times faster than physical assets, reaching $6.9 trillion.</p>
             </div>
           </div>
         </div>
@@ -316,11 +335,29 @@ function App() {
         <div className="recommendations recommendations_3">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>While global trade in services is growing, it’s not creating enough quality jobs in developing countries. Policymakers should focus on labour-absorbing sectors and promote technologies that boost productivity without displacing workers.</p>
+              <ol>
+                <li>
+                  <strong>Prioritize labour-complementing technologies.</strong>
+                  <br />
+                  Encourage companies to invest in technologies that enhance the productivity of low-skilled workers rather than replacing them.
+                </li>
+                <li>
+                  <strong>Support small businesses.</strong>
+                  <br />
+                  Provide public support and access to productivity-enhancing investments to help smaller enterprises grow, especially in services.
+                </li>
+                <li>
+                  <strong>Safeguard access to markets and technologies.</strong>
+                  <br />
+                  Ensure that new policy barriers don’t hamper the potential of services exports. Reforming WTO rules on trade barriers could improve developing country access to global markets and critical technologies.
+                </li>
+                <li>
+                  <strong>Make markets fairer:</strong>
+                  <br />
+                  Strengthen efforts to reduce the concentration of corporate power, improve transparency and promote competition, particularly in fast-growing services markets.
+                </li>
+              </ol>
             </div>
           </div>
         </div>
@@ -341,8 +378,8 @@ function App() {
           <h2>
             <span className="chapter">Chapter</span>
             <span className="number">4</span>
-            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
-            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
+            <span className="name">Rise, retreat and repositioning: Lessons from the Global South</span>
+            <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
           </h2>
           <div className="download_buttons_container">
             <a href="download" type="button" className="pdf_download">Chapter 4</a>
@@ -364,11 +401,12 @@ function App() {
         <div className="content content_4">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>Global commodity prices have dropped from their 2022 peaks but remain 20% above 2019 levels. In 2023, prices for critical energy transition minerals like lithium, cobalt and nickel fell sharply – 78%, 34% and 42%, respectively.</p>
+              <p>Financialization is increasingly shaping commodity prices, amplifying volatility and heightening risks in the energy transition, especially for export-dependent developing countries.</p>
+              <p>In response to market volatility, countries signed 22 trade agreements in 2023 to secure supplies to critical minerals. Some importers are also using industrial policies to boost local production.</p>
+              <p>Mineral exploration budgets rose by 34% and 16% in 2021 and 2022, while investment in critical minerals surged 20% and 30% during the same period. However, the main benefits will likely be limited to countries with large deposits, as some minerals, like cobalt, are concentrated in specific regions.</p>
+              <p>Meanwhile, growth in oil and gas investment is projected to slow after 2024, even as subsidies for solar and wind energy make these alternatives competitive with fossil fuels.</p>
+              <p>These shifts compound challenges for fossil fuel-exporting developing countries, many of which rely on energy exports for a third of their total exports, with 26 depending on them for more than half their export earnings.</p>
             </div>
           </div>
         </div>
@@ -383,11 +421,29 @@ function App() {
         <div className="recommendations recommendations_4">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>Managing the growing influence of financialization in commodity markets is a key challenge for developing countries during the energy transition. New strategies and stronger regulations are needed.</p>
+              <ol>
+                <li>
+                  <strong>Balance benefits and risks.</strong>
+                  <br />
+                  Policymakers should weigh the short-term gains of expanding extractive industries against the growing risks of financialization in commodity markets.
+                </li>
+                <li>
+                  <strong>Improve oversight of multinationals.</strong>
+                  <br />
+                  Implement stricter measures to ensure that multinationals contribute fairly, boosting domestic revenue for sustainable development.
+                </li>
+                <li>
+                  <strong>Promote diversification.</strong>
+                  <br />
+                  Prioritize policies for economic diversification, redistribution and financial regulation to create jobs and enhance economic resilience in commodity-exporting countries.
+                </li>
+                <li>
+                  <strong>Fulfil climate commitments.</strong>
+                  <br />
+                  Global cooperation is crucial for managing the energy transition. Developed countries need to uphold their climate commitments, including funding the energy transition in developing economies.
+                </li>
+              </ol>
             </div>
           </div>
         </div>
@@ -408,8 +464,8 @@ function App() {
           <h2>
             <span className="chapter">Chapter</span>
             <span className="number">5</span>
-            <span className="name">Ground meatloaf round magna, ham corned beef sunt sint ribeye</span>
-            <span className="desc">Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami.</span>
+            <span className="name">The Global South and new international tax architecture: The quest for development finance</span>
+            <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
           </h2>
           <div className="download_buttons_container">
             <a href="download" type="button" className="pdf_download">Chapter 5</a>
@@ -431,11 +487,12 @@ function App() {
         <div className="content content_5">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>Developing countries face tough policy choices amid overlapping crises, mounting public debt levels, high energy costs, rising demands for health and social services, and challenges from protectionism and shifting global trade patterns.</p>
+              <p>Raising capital is a major challenge, with only 22 developing countries holding investment-grade ratings. High borrowing costs, volatile external private financing and limited access to affordable public financing widens the gaps in development finance.</p>
+              <p>The global financial system, unchanged for 80 years, continues to prioritize private sector profits over the financial needs of developing countries.</p>
+              <p>Long-term solutions require better domestic revenue collection. But between 2015 and 2019, about 40% of multinational profits were shifted to tax havens, cutting global corporate tax revenues by 10%. Illicit financial flows, accounting for up to half of recorded trade in some cases, further drain revenue. </p>
+              <p>The proposed United Nations Framework Convention on International Tax Cooperation would help developing countries address these issues and close gaps in the global financial system. </p>
+              <p>Unlike other proposals, it would bring international taxation under a comprehensive, multilateral system. And the approach would be more inclusive, transparent and focused on the Global South’s needs.</p>
             </div>
           </div>
         </div>
@@ -450,11 +507,29 @@ function App() {
         <div className="recommendations recommendations_5">
           <div className="inner">
             <div className="text_container">
-              <p>
-                Meatloaf ground round magna, ham corned beef sunt sint ribeye. Picanha cow pork loin bacon in excepteur cillum et culpa. Sausage rump ad porchetta eiusmod excepteur dolore pork chop alcatra corned beef salami. Alcatra duis t-bone quis non bresaola. Chuck pork chop boudin dolor reprehenderit, pancetta culpa brisket pariatur enim dolore in alcatra hamburger. Hamburger cillum cupim short loin, commodo chislic culpa pork loin burgdoggen tenderloin pig turkey.
-              </p>
-              <p>Voluptate burgdoggen incididunt ullamco, laborum et est fatback short loin turducken kielbasa hamburger bresaola. Occaecat flank strip steak sint shankle ex, corned beef anim lorem meatloaf landjaeger alcatra tongue. Capicola enim eu, bresaola cupidatat short loin brisket sirloin elit reprehenderit esse sed andouille porchetta. Frankfurter bresaola ball tip, et nulla pariatur tempor short loin prosciutto in. In t-bone flank, venison esse chuck shank.</p>
-              <p>Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!</p>
+              <p>Supporting the Global South’s long-term financial stability requires concerted efforts to address rising debt, bolster national budgets, enhance tax cooperation and expand timely and flexible development finance.</p>
+              <ol>
+                <li>
+                  <strong>Implement a global tax convention.</strong>
+                  <br />
+                  The United Nations Framework Convention on International Tax Cooperation offers an inclusive and transparent approach. But its success hinges on active commitment by UN Member States, effective policy cooperation among developing countries and strong North-South dialogue.
+                </li>
+                <li>
+                  <strong>Reduce domestic revenue drain.</strong>
+                  <br />
+                  Strengthen national budgets in developing countries by tackling corporate arbitrage, tax avoidance and illicit financial flows, which drain significant resources.
+                </li>
+                <li>
+                  <strong>Improve access to affordable, long-term finance.</strong>
+                  <br />
+                  Boost concessional financing through multilateral and regional banks, reallocate special drawing rights (SDRs) and leverage innovative financial tools to ensure reliable, long-term funding.
+                </li>
+                <li>
+                  <strong>Prioritize debt relief and restructuring.</strong>
+                  <br />
+                  Multilateral efforts must continue to focus on flexible liquidity and debt relief and restructuring for nations in or near debt distress.
+                </li>
+              </ol>
             </div>
           </div>
         </div>
