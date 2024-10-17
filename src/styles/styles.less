@@ -60,14 +60,23 @@
           display: flex;
           flex-direction: row;
           height: 100%;
+          @media all and (max-width: 970px) {
+            flex-direction: column;
+          }
           button {
             background: none;
+            border-radius: 0;
             border: 0;
             cursor: pointer;
+            height: auto;
             margin: 0;
             padding: 0;
-            height: auto;
             text-align: left;
+            @media all and (max-width: 970px) {
+              border-bottom: 2px solid #fff;
+              border-top: 2px solid #fff;
+              margin-top: -2px;
+            }
             .chapter_navigation {
               border-color: #004987;
               border-style: solid;
@@ -78,14 +87,30 @@
               height: 100%;
               margin: 0 10px 0 0;
               width: 170px;
+              align-items: stretch;
               @media all and (max-width: 970px) {
-                display: none;
+                flex-direction: row;
+                width: 100%;
+                .chapter_meta {
+                  order: 1;
+                }
+                .chapter_title {
+                  order: 2;
+                }
+                .chapter_image {
+                  order: 3;
+                }
               }
               .chapter_title {
                 background-color: #004987;
-                flex: 1;
                 box-sizing: border-box;
+                display: flex;
+                flex: 1;
                 padding: 5px 5px 10px 5px;
+                @media all and (max-width: 970px) {
+                  align-items: center;
+                  padding: 5px 5px 5px 5px;
+                }
                 h2 {
                   color: #fff;
                   font-size: 18px;
@@ -98,7 +123,9 @@
                 padding: 5px;
                 position: relative;
                 @media all and (max-width: 970px) {
-                  display: none;
+                  height: 60px;
+                  padding: 0;
+                  width: 60px;
                 }
                 div {
                   aspect-ratio: 1/1;
@@ -121,12 +148,13 @@
                 }
               }
               .chapter_meta {
+                align-items: center;
                 background-color: #004987;
                 display: flex;
                 justify-content: space-between;
-                padding: 5px 5px 0 5px;
+                padding: 5px 5px 0px 5px;
                 @media all and (max-width: 970px) {
-                  display: none;
+                  padding: 5px 5px 5px 5px;
                 }
                 .chapter_number {
                   color: #fff;
@@ -134,7 +162,11 @@
                   font-weight: 900;
                 }
                 .chapter_download_button {
+                  @media all and (max-width: 970px) {
+                    display: none;
+                  }
                   color: #fff;
+                  margin-top: -4px;
                   &:before {
                     background-image: url('./../assets/img/icons/icon_download_white.png');
                     background-size: 100%;
@@ -299,22 +331,26 @@
         border: 0;
         bottom: 20px;
         color: #fff;
+        content: '';
         cursor: pointer;
         height: 40px;
         padding-bottom: 0;
         position: absolute;
         right: 10px;
-        transition-delay: 0s;
-        transition-duration: 0.25s;
-        transition-property: padding;
-        transition-timing-function: ease-out;
         width: 40px;
         &:hover {
-          padding-bottom: 45px;
-          transition-delay: 0s;
-          transition-duration: 0.5s;
-          transition-property: padding;
-          transition-timing-function: ease-out;
+          animation: bounce 2s infinite;
+          @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0);
+            }
+            40% {
+              transform: translateY(-20px);
+            }
+            60% {
+              transform: translateY(-10px);
+            }
+          }
         }
       }
     }
