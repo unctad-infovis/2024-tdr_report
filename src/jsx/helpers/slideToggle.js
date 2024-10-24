@@ -18,13 +18,23 @@ const slideToggle = (appRef, chapter, type, el) => {
     /** It's like a delay or something. MAGIC! */
     setTimeout(() => {
       container.style.height = height;
+      setTimeout(() => {
+        container.style.height = '100%';
+      }, 500);
     }, 0);
     window.dispatchEvent(new Event('resize'));
 
     /** Slide up. */
   } else {
     /** Set the height as 0px to trigger the slide up animation. */
-    container.style.height = '0px';
+    const height = `${container.clientHeight}px`;
+    setTimeout(() => {
+      console.log(height);
+      container.style.height = height;
+      setTimeout(() => {
+        container.style.height = '0px';
+      }, 10);
+    }, 0);
 
     /** Remove the `active` class when the animation ends. */
     container.addEventListener('transitionend', () => {

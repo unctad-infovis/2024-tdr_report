@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import '../styles/styles.less';
 
-// https://www.npmjs.com/package/scroll-into-view
 import scrollIntoView from 'scroll-into-view';
+import DwChartContainer from './components/DwChartContainer.jsx';
 
+// https://www.npmjs.com/package/scroll-into-view
 import slideToggle from './helpers/slideToggle.js';
 
 function App() {
@@ -56,8 +57,8 @@ function App() {
           <div className="chapters_navigation_container">
             {
               ['The macro-economics of discontent', 'The illusion of a rebound', 'Globalization at an inflection point', 'Rise, retreat and repositioning', 'The Global South and new international tax architecture'].map((chapter_title, i) => (
-                <button onClick={() => anchorClick(`.chapter_header_${i + 1}`)} type="button">
-                  <div className="chapter_navigation" key={chapter_title}>
+                <button onClick={() => anchorClick(`.chapter_header_${i + 1}`)} type="button" key={chapter_title}>
+                  <div className="chapter_navigation">
                     <div className="chapter_title"><h2>{chapter_title}</h2></div>
                     <div className="chapter_image"><div className={`chapter_image_${i + 1}`} /></div>
                     <div className="chapter_meta">
@@ -143,11 +144,29 @@ function App() {
           <div className="inner">
             <div className="text_container">
               <p>Global growth is projected to stagnate at 2.7% in 2024 and 2025, down from the 3.0% annual average between 2011 and 2019 and well below the 4.4% average seen before the global financial crisis.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="Ggqdq" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>For developing countries, the slowdown is sharper, with growth falling from 6.6% between 2003 and 2013 to just 4.1% over the past decade. Excluding China, the Global South’s growth averaged only 2.8%.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="5xtKn" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>This “new normal” of low growth is insufficient to address the economic, social and environmental challenges facing developing countries, especially as their public debt rises.</p>
               <p>In the Global South, public debt levels have jumped 15 percentage points in four years. High interest rates in advanced economies, combined with depreciating currencies in developing nations, have raised the cost of foreign debt, forcing many countries to divert more of their export earnings to debt payments.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="19WNi" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>The report warns that prolonged monetary tightening to control post-pandemic inflation has been only partially effective and caused global economic hardship.</p>
               <p>As a result, the post-COVID-19 recovery has been marked by widespread discontent, with higher consumer prices and rising credit costs eroding household disposable income by 8% since 2020.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="3zFHf" parent_class="content_1" />
             </div>
           </div>
         </div>
@@ -231,11 +250,29 @@ function App() {
           <div className="inner">
             <div className="text_container">
               <p>Between 1995 and 2007, trade grew at twice the rate of global GDP. But since the 2008–2009 financial crisis, trade growth relative to GDP has stalled.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="DiJZv" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>Another key shift is the waning role of merchandise trade, which declined by 1.2% in 2023. This was the first time it contracted while the global economy grew.</p>
               <p>In 2024, merchandise trade is expected to rebound by 2% in real terms (after adjusting for inflation), but trade in services is set to continue growing by 5%, increasing its share of the global total to nearly 25% – a share that is expected to keep rising.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="PkjTv" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>For low- and middle-income countries, which rely heavily on trade, these shifts compound development challenges.</p>
               <p>However, trade between developing countries (South-South trade) more than doubled to $5.6 trillion between 2007 and 2023, offering growth and regional integration opportunities. The green transition also holds promise, with demand soaring for minerals from developing countries that are critical for electric vehicles and renewable energy.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="g0RBQ" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>Yet new technologies are concentrated in the hands of companies in advanced economies, and geopolitical tensions could accelerate home-shoring, which could limit opportunities for developing countries.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="ushCi" parent_class="content_1" />
             </div>
           </div>
         </div>
@@ -317,10 +354,23 @@ function App() {
           <div className="inner">
             <div className="text_container">
               <p>Manufacturing is becoming less effective as a growth strategy for developing countries. The competitive advantage of cheap labour no longer aligns with modern manufacturing’s focus on skill and capital-intensive production.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="AskMw" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>In 2023, global merchandise trade slowed by 1.2%, while trade in services grew by 5% in real terms (after adjusting for inflation). Services now make up nearly 25% of global trade, and this share is expected to grow further, raising hopes that services could become a new growth engine.</p>
               <p>However, relying on trade in services as the main driver for development carries risks, especially for developing countries, which account for less than 30% of global services export revenues.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="CvAkx" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>The unlevel playing field is evident in the fast-growing creative services sector, valued at $1.4 trillion in 2022, where developed countries account for 80% of exports. Also, 70% of multinational enterprises providing international services are headquartered in advanced economies.</p>
               <p>The growing importance of intangible assets like brands, software, data and patented technologies in global supply chains could further widen the gap between developed and developing countries. In 2023, investment in intangible assets grew three times faster than physical assets, reaching $6.9 trillion.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="yze6W" parent_class="content_1" />
             </div>
           </div>
         </div>
@@ -402,11 +452,29 @@ function App() {
           <div className="inner">
             <div className="text_container">
               <p>Global commodity prices have dropped from their 2022 peaks but remain 20% above 2019 levels. In 2023, prices for critical energy transition minerals like lithium, cobalt and nickel fell sharply – 78%, 34% and 42%, respectively.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="5CpF6" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>Financialization is increasingly shaping commodity prices, amplifying volatility and heightening risks in the energy transition, especially for export-dependent developing countries.</p>
               <p>In response to market volatility, countries signed 22 trade agreements in 2023 to secure supplies to critical minerals. Some importers are also using industrial policies to boost local production.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="UKeAB" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>Mineral exploration budgets rose by 34% and 16% in 2021 and 2022, while investment in critical minerals surged 20% and 30% during the same period. However, the main benefits will likely be limited to countries with large deposits, as some minerals, like cobalt, are concentrated in specific regions.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="TrS95" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>Meanwhile, growth in oil and gas investment is projected to slow after 2024, even as subsidies for solar and wind energy make these alternatives competitive with fossil fuels.</p>
               <p>These shifts compound challenges for fossil fuel-exporting developing countries, many of which rely on energy exports for a third of their total exports, with 26 depending on them for more than half their export earnings.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="9Da8F" parent_class="content_1" />
             </div>
           </div>
         </div>
@@ -488,6 +556,11 @@ function App() {
           <div className="inner">
             <div className="text_container">
               <p>Developing countries face tough policy choices amid overlapping crises, mounting public debt levels, high energy costs, rising demands for health and social services, and challenges from protectionism and shifting global trade patterns.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="Le2Kk" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>Raising capital is a major challenge, with only 22 developing countries holding investment-grade ratings. High borrowing costs, volatile external private financing and limited access to affordable public financing widens the gaps in development finance.</p>
               <p>The global financial system, unchanged for 80 years, continues to prioritize private sector profits over the financial needs of developing countries.</p>
               <p>Long-term solutions require better domestic revenue collection. But between 2015 and 2019, about 40% of multinational profits were shifted to tax havens, cutting global corporate tax revenues by 10%. Illicit financial flows, accounting for up to half of recorded trade in some cases, further drain revenue. </p>
