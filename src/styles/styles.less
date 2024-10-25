@@ -1,5 +1,6 @@
 @import 'colors.less';
 @import 'download_buttons.less';
+@import url('https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,800,900.css');
 
 #app-root-2024-tdr_report_app .app {
   font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -23,7 +24,7 @@
       max-width: 1350px;
       padding: 0 10px;
       &.content_top {
-        margin: 20px 0 0 0;
+        margin: 20px auto;
         width: 100%;
         h2 {
           color: #fff;
@@ -31,6 +32,9 @@
           line-height: 34px;
           margin: 0 0 20px 0;
           max-width: 350px;
+          &:after {
+            display: none;
+          }
           .year {
             span {
               color: #ffcb05;
@@ -55,6 +59,9 @@
           margin: 0 0 20px 0;
           max-width: 700px;
           padding: 0;
+          &:after {
+            display: none;
+          }
         }
         .chapters_navigation_container {
           display: flex;
@@ -116,6 +123,9 @@
                   font-size: 18px;
                   margin: 0;
                   padding: 0;
+                  &:after {
+                    display: none;
+                  }
                 }
               }
               .chapter_image {
@@ -267,9 +277,13 @@
           box-sizing: border-box;
           color: #fff;
           font-size: 22px;
+          line-height: 26px;
           margin: 0 auto 20px auto;
           max-width: 1000px;
           padding: 0 10px;
+          &:after {
+            display: none;
+          }
           .year {
             display: inline-block;
             margin-right: 10px;
@@ -292,10 +306,14 @@
           color: #fff;
           margin: 0 0 20px 0;
           max-width: 600px;
+          &:after {
+            display: none;
+          }
           span {
             display: block;
             &.chapter {
               font-size: 20px;
+              line-height: 264x;
             }
             &.number {
               font-size: 120px;
@@ -420,12 +438,16 @@
     .recommendations,
     .content {
       background-color: #fff;
+      height: 0;
       margin: auto auto auto auto;
       max-width: 900px;
       overflow: hidden;
       transition: height .5s ease;
-      &:not(.active) {
-        display: none;
+      // &:not(.active) {
+      //   display: none;
+      // }
+      &.closing {
+        transition: height .2s ease;
       }
       .inner {
         box-sizing: border-box;
@@ -493,8 +515,9 @@
       }
       p {
         font-size: 18px;
+        letter-spacing: 0 !important;
         line-height: 24px;
-        margin: 0 0 20px 0;
+        margin: 0 0 20px 0 !important;
       }
       blockquote {
         font-size: 18px;
@@ -528,6 +551,9 @@
     }
     h2 {
       margin: 0 0 20px auto;
+      &:after {
+        display: none;
+      }
       .chapter {
         background-color: #009edb;
         color: #fff;
@@ -585,14 +611,12 @@
       text-align: right;
       .values {
         .year {
-          background-color: rgba(255, 255, 255, 0.5);
           display: inline-block;
           font-size: 60px;
           font-weight: 700;
           line-height: 60px;
         }
         .total {
-          background-color: rgba(255, 255, 255, 0.9);
           display: inline-block;
           font-size: 22px;
           font-weight: 500;

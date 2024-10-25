@@ -61,16 +61,16 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
   // eslint-disable-next-line
   H.Fx.prototype.textSetter = function () {
     try {
-      let startValue = this.start.replace(/,/g, '');
-      let endValue = this.end.replace(/,/g, '');
-      let currentValue = this.end.replace(/,/g, '');
+      let startValue = this.start.replace(/ /g, '');
+      let endValue = this.end.replace(/ /g, '');
+      let currentValue = this.end.replace(/ /g, '');
 
       if ((startValue || '').match(FLOAT)) {
         startValue = parseInt(startValue, 10);
         endValue = parseInt(endValue, 10);
 
         // No support for float
-        currentValue = Highcharts.numberFormat(Math.round(startValue + (endValue - startValue) * this.pos), 0);
+        currentValue = Highcharts.numberFormat(Math.round(startValue + (endValue - startValue) * this.pos), 0, '.', ' ');
       }
 
       this.elem.endText = this.end;
@@ -92,17 +92,22 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
   // In core it's simple change attr(...) => animate(...) for text prop
   // eslint-disable-next-line
   H.wrap(H.Series.prototype, 'drawDataLabels', function (proceed) {
+    H.setOptions({
+      lang: {
+        decimalPoint: '.',
+        downloadCSV: 'Download CSV data',
+        thousandsSep: ' '
+      }
+    });
     try {
       const { attr } = H.SVGElement.prototype;
       const { chart } = this;
 
       if (chart.sequenceTimer) {
         this.points.forEach(point => (point.dataLabels || []).forEach(
-        // eslint-disable-next-line
+          // eslint-disable-next-line
           label => (label.attr = function (hash) {
-            if (
-              hash && hash.text !== undefined && chart.isResizing === 0
-            ) {
+            if (hash && hash.text !== undefined && chart.isResizing === 0) {
               const { text } = hash;
 
               delete hash.text;
@@ -120,7 +125,6 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 
       // eslint-disable-next-line
       this.points.forEach(p => (p.dataLabels || []).forEach(d => (d.attr = attr)));
-
       return ret;
     } catch (error) {
       console.log(error);
@@ -163,7 +167,7 @@ function BarRaceChart({
 
   const getSubtitle = useCallback(() => {
     const total = (getData(input.current.value).total[1]).toFixed(0);
-    return `<div class="year">${input.current.value}</div><br /><div class="total">${formatNr(total, ' ')} cars</div>`;
+    return `<div class="year">${input.current.value}</div><br /><div class="total">${formatNr(total, ' ')} vehicles</div>`;
   }, [getData, input]);
 
   const xScale = d3.scaleLinear()
@@ -219,7 +223,7 @@ function BarRaceChart({
       btn.current.innerHTML = '⏸︎';
       chart.current.sequenceTimer = setInterval(() => {
         update(1);
-      }, 1000);
+      }, 600);
     };
     if (chart.current.sequenceTimer) {
       pause();
@@ -316,7 +320,11 @@ function BarRaceChart({
         }
       },
       legend: {
-        enabled: false
+        align: 'left',
+        enabled: true,
+        itemDistance: 5,
+        margin: 0,
+        verticalAlign: 'top',
       },
       plotOptions: {
         bar: {
@@ -374,7 +382,18 @@ function BarRaceChart({
       series: [{
         data: tmp_data.values,
         name: startYear,
+        showInLegend: false,
         type: 'bar'
+      }, {
+        color: '#009edb',
+        name: 'Developed countries',
+        showInLegend: true,
+        type: 'column'
+      }, {
+        color: '#fbaf17',
+        name: 'Developing countries',
+        showInLegend: true,
+        type: 'column'
       }],
       subtitle: {
         align: 'left',
@@ -386,12 +405,12 @@ function BarRaceChart({
           lineHeight: '18px'
         },
         text: subtitle,
-        widthAdjust: -144,
+        widthAdjust: -90,
         x: 10
       },
       title: {
         align: 'left',
-        margin: 20,
+        margin: 10,
         style: {
           color: '#000',
           fontSize: '30px',
@@ -399,7 +418,7 @@ function BarRaceChart({
           lineHeight: '34px'
         },
         text: `${`${title} in ${input.current.value}`}?`,
-        widthAdjust: -144,
+        widthAdjust: -90,
         x: 64,
         y: 25
       },

@@ -3,6 +3,7 @@ const slideToggle = (appRef, chapter, type, el) => {
   const button = el.currentTarget;
   /** Slide down. */
   if (!container.classList.contains('active')) {
+    container.classList.remove('closing');
     container.classList.add('active');
     button.classList.add('active');
     container.style.height = 'auto';
@@ -19,7 +20,7 @@ const slideToggle = (appRef, chapter, type, el) => {
     setTimeout(() => {
       container.style.height = height;
       setTimeout(() => {
-        container.style.height = '100%';
+        container.style.height = 'auto';
       }, 500);
     }, 0);
     window.dispatchEvent(new Event('resize'));
@@ -27,20 +28,17 @@ const slideToggle = (appRef, chapter, type, el) => {
     /** Slide up. */
   } else {
     /** Set the height as 0px to trigger the slide up animation. */
+    container.classList.add('closing');
     const height = `${container.clientHeight}px`;
     setTimeout(() => {
-      console.log(height);
       container.style.height = height;
       setTimeout(() => {
         container.style.height = '0px';
       }, 10);
     }, 0);
 
-    /** Remove the `active` class when the animation ends. */
-    container.addEventListener('transitionend', () => {
-      button.classList.remove('active');
-      container.classList.remove('active');
-    }, { once: true });
+    button.classList.remove('active');
+    container.classList.remove('active');
   }
 };
 

@@ -111,7 +111,7 @@ function MapBarChart({
       btn.current.innerHTML = '⏸︎';
       chart.current.sequenceTimer = setInterval(() => {
         update(1);
-      }, 1000);
+      }, 600);
     };
     if (chart.current.sequenceTimer) {
       pause();
@@ -206,7 +206,11 @@ function MapBarChart({
           }
         },
         legend: {
-          enabled: false
+          align: 'left',
+          enabled: true,
+          itemDistance: 5,
+          margin: 0,
+          verticalAlign: 'top',
         },
         mapNavigation: {
           buttonOptions: {
@@ -263,8 +267,9 @@ function MapBarChart({
         },
         series: [{
           borderColor: 'rgba(0, 0, 0, 0.01)',
+          enableMouseTracking: false,
           nullColor: '#ded9d5',
-          enableMouseTracking: false
+          showInLegend: false
         }, {
           type: 'mapbubble',
           name: 'Vehicles',
@@ -274,6 +279,7 @@ function MapBarChart({
           data: getData(startYear),
           minSize: 8,
           maxSize: '20%',
+          showInLegend: false,
           states: {
             hover: {
               halo: {
@@ -286,6 +292,16 @@ function MapBarChart({
             headerFormat: '',
             pointFormat: '{point.country}<br /><strong>{point.z} vehicles</strong>'
           }
+        }, {
+          name: 'Developed countries',
+          color: '#009edb',
+          showInLegend: true,
+          type: 'column'
+        }, {
+          name: 'Developing countries',
+          color: '#fbaf17',
+          showInLegend: true,
+          type: 'column'
         }],
         subtitle: {
           align: 'left',
@@ -297,12 +313,12 @@ function MapBarChart({
             lineHeight: '18px'
           },
           text: subtitle,
-          widthAdjust: -144,
+          widthAdjust: -90,
           x: 10
         },
         title: {
           align: 'left',
-          margin: 20,
+          margin: 10,
           style: {
             color: '#000',
             fontSize: '30px',
@@ -310,7 +326,7 @@ function MapBarChart({
             lineHeight: '34px'
           },
           text: `${title} in 1999?`,
-          widthAdjust: -144,
+          widthAdjust: -90,
           x: 64,
           y: 25
         },

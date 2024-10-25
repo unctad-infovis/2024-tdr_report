@@ -1,6 +1,10 @@
 import React, { useRef } from 'react';
 import '../styles/styles.less';
 
+// https://www.npmjs.com/package/react-is-visible
+import 'intersection-observer';
+import IsVisible from 'react-is-visible';
+
 import scrollIntoView from 'scroll-into-view';
 import DwChartContainer from './components/DwChartContainer.jsx';
 
@@ -10,14 +14,20 @@ import slideToggle from './helpers/slideToggle.js';
 function App() {
   const appRef = useRef();
 
-  // const analytics = window.gtag || undefined;
-  // if (typeof analytics !== 'undefined') {
-  //   analytics('event', 'Scroll', { event_category: '2022-rmt_report', event_label: 'Section 1', transport_type: 'beacon' });
-  // }
+  const analytics = window.gtag || undefined;
 
-  const anchorClick = (target, name) => {
-    console.log(name);
-    // track(name);
+  const track = (event_name = false, event_category = false, event_label = false) => {
+    if (typeof analytics !== 'undefined' && event_name !== false) {
+      analytics('event', event_name, { event_category, event_label, transport_type: 'beacon' });
+    }
+  };
+
+  const seenSection = (section) => {
+    track(false, section);
+  };
+
+  const scrollTo = (target) => {
+    track(false);
     setTimeout(() => {
       scrollIntoView(appRef.current.querySelector(target), {
         align: {
@@ -32,6 +42,16 @@ function App() {
         time: 1000
       });
     }, 50);
+  };
+
+  const openContainer = (seq, type, event) => {
+    track(false);
+    slideToggle(appRef, seq, type, event);
+  };
+
+  const downloadDocument = (event) => {
+    track(false);
+    event.stopPropagation();
   };
 
   return (
@@ -51,13 +71,13 @@ function App() {
         <div className="content_bottom">
           <h2>Pact for the Future: Redefining trade and development for global progress</h2>
           <div className="download_buttons_container">
-            <a href="#download" type="button" className="overview">Overview</a>
-            <a href="#download" type="button" className="pdf_download">Full report</a>
+            <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="overview">Overview</a>
+            <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Full report</a>
           </div>
           <div className="chapters_navigation_container">
             {
               ['The macro-economics of discontent', 'The illusion of a rebound', 'Globalization at an inflection point', 'Rise, retreat and repositioning', 'The Global South and new international tax architecture'].map((chapter_title, i) => (
-                <button onClick={() => anchorClick(`.chapter_header_${i + 1}`)} type="button" key={chapter_title}>
+                <button onClick={() => scrollTo(`.chapter_header_${i + 1}`)} type="button" key={chapter_title}>
                   <div className="chapter_navigation">
                     <div className="chapter_title"><h2>{chapter_title}</h2></div>
                     <div className="chapter_image"><div className={`chapter_image_${i + 1}`} /></div>
@@ -66,7 +86,7 @@ function App() {
                         {i + 1}
                         .
                       </div>
-                      <a className="chapter_download_button" href="#download" aria-label="Download" />
+                      <a href="#download" onClick={(event) => downloadDocument(event)} className="chapter_download_button" aria-label="Download" />
                     </div>
                   </div>
                 </button>
@@ -114,26 +134,35 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <div className="content_bottom">
-          <h2>
-            <span className="chapter">Chapter</span>
-            <span className="number">1</span>
-            <span className="name">The macroeconomics of discontent: Current trends and challenges in the global economy</span>
-            <span className="desc">
-              This section examines the impacts of the global economy’s new, “low normal” of 2.7% growth – a rate far below what’s needed to meet development goals
-            </span>
-          </h2>
-          <div className="download_buttons_container">
-            <a href="download" type="button" className="pdf_download">Chapter 1</a>
-          </div>
-        </div>
+        <IsVisible once>
+          {(isVisible) => {
+            if (isVisible) {
+              seenSection();
+            }
+            return (
+              <div className="content_bottom">
+                <h2>
+                  <span className="chapter">Chapter</span>
+                  <span className="number">1</span>
+                  <span className="name">The macroeconomics of discontent: Current trends and challenges in the global economy</span>
+                  <span className="desc">
+                    This section examines the impacts of the global economy’s new, “low normal” of 2.7% growth – a rate far below what’s needed to meet development goals
+                  </span>
+                </h2>
+                <div className="download_buttons_container">
+                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 1</a>
+                </div>
+              </div>
+            );
+          }}
+        </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
         </div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '1', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
+          <button type="button" onClick={(event) => openContainer('1', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
             <div>
               <span className="name">Explore the key analysis and graphs</span>
               <span className="expand_label">Expand</span>
@@ -171,7 +200,7 @@ function App() {
           </div>
         </div>
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '1', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
+          <button type="button" onClick={(event) => openContainer('1', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
             <div>
               <span className="name">See the main recommendations</span>
               <span className="expand_label">Expand</span>
@@ -222,24 +251,33 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <div className="content_bottom">
-          <h2>
-            <span className="chapter">Chapter</span>
-            <span className="number">2</span>
-            <span className="name">The illusion of a rebound: International markets in 2024</span>
-            <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
-          </h2>
-          <div className="download_buttons_container">
-            <a href="download" type="button" className="pdf_download">Chapter 2</a>
-          </div>
-        </div>
+        <IsVisible once>
+          {(isVisible) => {
+            if (isVisible) {
+              seenSection();
+            }
+            return (
+              <div className="content_bottom">
+                <h2>
+                  <span className="chapter">Chapter</span>
+                  <span className="number">2</span>
+                  <span className="name">The illusion of a rebound: International markets in 2024</span>
+                  <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
+                </h2>
+                <div className="download_buttons_container">
+                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 2</a>
+                </div>
+              </div>
+            );
+          }}
+        </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
         </div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '2', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
+          <button type="button" onClick={(event) => openContainer('2', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
             <div>
               <span className="name">Explore the key analysis and graphs</span>
               <span className="expand_label">Expand</span>
@@ -277,7 +315,7 @@ function App() {
           </div>
         </div>
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '2', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
+          <button type="button" onClick={(event) => openContainer('2', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
             <div>
               <span className="name">See the main recommendations</span>
               <span className="expand_label">Expand</span>
@@ -326,24 +364,33 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <div className="content_bottom">
-          <h2>
-            <span className="chapter">Chapter</span>
-            <span className="number">3</span>
-            <span className="name">Globalization at an inflection point</span>
-            <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
-          </h2>
-          <div className="download_buttons_container">
-            <a href="download" type="button" className="pdf_download">Chapter 3</a>
-          </div>
-        </div>
+        <IsVisible once>
+          {(isVisible) => {
+            if (isVisible) {
+              seenSection();
+            }
+            return (
+              <div className="content_bottom">
+                <h2>
+                  <span className="chapter">Chapter</span>
+                  <span className="number">3</span>
+                  <span className="name">Globalization at an inflection point</span>
+                  <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
+                </h2>
+                <div className="download_buttons_container">
+                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 3</a>
+                </div>
+              </div>
+            );
+          }}
+        </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
         </div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '3', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
+          <button type="button" onClick={(event) => openContainer('3', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
             <div>
               <span className="name">Explore the key analysis and graphs</span>
               <span className="expand_label">Expand</span>
@@ -375,7 +422,7 @@ function App() {
           </div>
         </div>
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '3', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
+          <button type="button" onClick={(event) => openContainer('3', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
             <div>
               <span className="name">See the main recommendations</span>
               <span className="expand_label">Expand</span>
@@ -424,24 +471,33 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <div className="content_bottom">
-          <h2>
-            <span className="chapter">Chapter</span>
-            <span className="number">4</span>
-            <span className="name">Rise, retreat and repositioning: Lessons from the Global South</span>
-            <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
-          </h2>
-          <div className="download_buttons_container">
-            <a href="download" type="button" className="pdf_download">Chapter 4</a>
-          </div>
-        </div>
+        <IsVisible once>
+          {(isVisible) => {
+            if (isVisible) {
+              seenSection();
+            }
+            return (
+              <div className="content_bottom">
+                <h2>
+                  <span className="chapter">Chapter</span>
+                  <span className="number">4</span>
+                  <span className="name">Rise, retreat and repositioning: Lessons from the Global South</span>
+                  <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
+                </h2>
+                <div className="download_buttons_container">
+                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 4</a>
+                </div>
+              </div>
+            );
+          }}
+        </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
         </div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '4', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
+          <button type="button" onClick={(event) => openContainer('4', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
             <div>
               <span className="name">Explore the key analysis and graphs</span>
               <span className="expand_label">Expand</span>
@@ -479,7 +535,7 @@ function App() {
           </div>
         </div>
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '4', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
+          <button type="button" onClick={(event) => openContainer('4', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
             <div>
               <span className="name">See the main recommendations</span>
               <span className="expand_label">Expand</span>
@@ -528,24 +584,33 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <div className="content_bottom">
-          <h2>
-            <span className="chapter">Chapter</span>
-            <span className="number">5</span>
-            <span className="name">The Global South and new international tax architecture: The quest for development finance</span>
-            <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
-          </h2>
-          <div className="download_buttons_container">
-            <a href="download" type="button" className="pdf_download">Chapter 5</a>
-          </div>
-        </div>
+        <IsVisible once>
+          {(isVisible) => {
+            if (isVisible) {
+              seenSection();
+            }
+            return (
+              <div className="content_bottom">
+                <h2>
+                  <span className="chapter">Chapter</span>
+                  <span className="number">5</span>
+                  <span className="name">The Global South and new international tax architecture: The quest for development finance</span>
+                  <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
+                </h2>
+                <div className="download_buttons_container">
+                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 5</a>
+                </div>
+              </div>
+            );
+          }}
+        </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => anchorClick('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
         </div>
       </div>
       <div className="content_container">
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '5', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
+          <button type="button" onClick={(event) => openContainer('5', 'content', event)} className="chapter_menu_button chapter_menu_button_overview">
             <div>
               <span className="name">Explore the key analysis and graphs</span>
               <span className="expand_label">Expand</span>
@@ -570,7 +635,7 @@ function App() {
           </div>
         </div>
         <div className="chapter_menu_container">
-          <button type="button" onClick={(event) => slideToggle(appRef, '5', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
+          <button type="button" onClick={(event) => openContainer('5', 'recommendations', event)} className="chapter_menu_button chapter_menu_button_recommendations">
             <div>
               <span className="name">See the main recommendations</span>
               <span className="expand_label">Expand</span>

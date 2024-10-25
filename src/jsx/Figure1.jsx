@@ -47,10 +47,10 @@ function Figure1() {
         idx="01"
         note=""
         source="UN Trade and Development (UNCTAD) based on OICA."
-        subtitle="Top 15 country annually, number of vehicles manufactured, 1999–2023"
+        subtitle="Top 15 countries annually, number of vehicles manufactured, 1999–2023"
         show_only_first_and_last_labels={false}
         suffix="%"
-        title="Who manufactures the most vehicles"
+        title="Who manufactured the most vehicles"
         ylabel=""
       />
       )}
