@@ -18,17 +18,20 @@
     margin-bottom: 40px;
     min-height: 50vh;
     position: relative;
-      @media all and (max-width: 970px) {
-        background-image: url('./../assets/img/m/header.jpg');
-      }
-      @media all and (max-width: 450px) {
-        background-image: url('./../assets/img/s/header.jpg');
-      }
+    @media all and (max-width: 970px) {
+      background-image: url('./../assets/img/m/header.jpg');
+    }
+    @media all and (max-width: 450px) {
+      background-image: url('./../assets/img/s/header.jpg');
+    }
     > div {
       box-sizing: border-box;
       margin: 0 auto;
       max-width: 1350px;
       padding: 0 10px;
+      @media all and (max-width: 450px) {
+        padding: 0 0;
+      }
       &.content_top {
         margin: 20px auto;
         width: 100%;
@@ -38,6 +41,9 @@
           line-height: 34px;
           margin: 0 0 20px 0;
           max-width: 350px;
+          @media all and (max-width: 450px) {
+            padding: 0 10px;
+          }
           &:after {
             display: none;
           }
@@ -65,8 +71,21 @@
           margin: 0 0 20px 0;
           max-width: 700px;
           padding: 0;
+          @media all and (max-width: 450px) {
+            padding: 0 10px;
+          }
           &:after {
             display: none;
+          }
+        }
+        .download_buttons_container {
+          @media all and (max-width: 340px) {
+            .overview {
+              margin-bottom: 10px;
+            }
+          }
+          @media all and (max-width: 450px) {
+            padding: 0 10px;
           }
         }
         .chapters_navigation_container {
@@ -91,6 +110,8 @@
               margin-top: -2px;
             }
             .chapter_navigation {
+              align-items: stretch;
+              background-color: #004987;
               border-color: #004987;
               border-style: solid;
               border-width: 5px;
@@ -100,7 +121,6 @@
               height: 100%;
               margin: 0 10px 0 0;
               width: 170px;
-              align-items: stretch;
               @media all and (max-width: 970px) {
                 flex-direction: row;
                 width: 100%;
@@ -145,7 +165,7 @@
                 }
                 div {
                   aspect-ratio: 1/1;
-                  background-size: auto 100%;
+                  background-size: 100% 100%;
                   &.chapter_image_1 {
                     background-image: url('./../assets/img/thumbnails/ch1.jpg');
                   }
@@ -178,11 +198,11 @@
                   font-weight: 900;
                 }
                 .chapter_download_button {
+                  color: #fff;
+                  margin-top: -4px;
                   @media all and (max-width: 970px) {
                     display: none;
                   }
-                  color: #fff;
-                  margin-top: -4px;
                   &:before {
                     background-image: url('./../assets/img/icons/icon_download_white.png');
                     background-size: 100%;
@@ -215,12 +235,12 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
+    height: 100%;
     margin: auto auto;
     max-width: 1350px;
     min-height: 700px;
     position: relative;
     width: 100%;
-    height: 100%;
     // &:before {
     //   background: linear-gradient(180deg, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0) 100%);
     //   height: 100px;
