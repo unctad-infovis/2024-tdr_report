@@ -8,7 +8,7 @@
   >.header_container {
     align-content: space-between;
     background-color: #8b0000;
-    background-image: url('./../assets/img/TDR24_web_header_image_1920_wide_.jpg');
+    background-image: url('./../assets/img/l/header.jpg');
     background-position: 50% 0;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,6 +18,12 @@
     margin-bottom: 40px;
     min-height: 50vh;
     position: relative;
+      @media all and (max-width: 970px) {
+        background-image: url('./../assets/img/m/header.jpg');
+      }
+      @media all and (max-width: 450px) {
+        background-image: url('./../assets/img/s/header.jpg');
+      }
     > div {
       box-sizing: border-box;
       margin: 0 auto;
