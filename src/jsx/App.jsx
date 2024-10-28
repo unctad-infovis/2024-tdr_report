@@ -15,19 +15,19 @@ function App() {
   const appRef = useRef();
 
   const analytics = window.gtag || undefined;
-
-  const track = (event_name = false, event_category = false, event_label = false) => {
+  const project_name = '2024-tdr';
+  const track = (event_type = false, event_name = false) => {
     if (typeof analytics !== 'undefined' && event_name !== false) {
-      analytics('event', event_name, { event_category, event_label, transport_type: 'beacon' });
+      analytics('event', project_name, { event_type, event_name, transport_type: 'beacon' });
     }
   };
 
-  const seenSection = (section) => {
-    track(false, section);
+  const seenChapter = (chapter) => {
+    track('Scroll', chapter);
   };
 
-  const scrollTo = (target) => {
-    track(false);
+  const scrollTo = (target, name) => {
+    track('Button', name);
     setTimeout(() => {
       scrollIntoView(appRef.current.querySelector(target), {
         align: {
@@ -45,13 +45,14 @@ function App() {
   };
 
   const openContainer = (seq, type, event) => {
-    track(false);
+    track('Button', `Open container ${seq}`);
     slideToggle(appRef, seq, type, event);
   };
 
   const downloadDocument = (event) => {
-    track(false);
+    track('Anchor', `${event.currentTarget.href}`);
     event.stopPropagation();
+    return false;
   };
 
   return (
@@ -71,13 +72,13 @@ function App() {
         <div className="content_bottom">
           <h2>Pact for the Future: Redefining trade and development for global progress</h2>
           <div className="download_buttons_container">
-            <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="overview">Overview</a>
-            <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Full report</a>
+            <a href="/system/files/official-document/tdr2024overview_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="overview">Overview</a>
+            <a href="/system/files/official-document/tdr2024_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Full report</a>
           </div>
           <div className="chapters_navigation_container">
             {
               ['The macro-economics of discontent', 'The illusion of a rebound', 'Globalization at an inflection point', 'Rise, retreat and repositioning', 'The Global South and new international tax architecture'].map((chapter_title, i) => (
-                <button onClick={() => scrollTo(`.chapter_header_${i + 1}`)} type="button" key={chapter_title}>
+                <button onClick={() => scrollTo(`.chapter_header_${i + 1}`, `To chapter ${i + 1}`)} type="button" key={chapter_title}>
                   <div className="chapter_navigation">
                     <div className="chapter_title"><h2>{chapter_title}</h2></div>
                     <div className="chapter_image"><div className={`chapter_image_${i + 1}`} /></div>
@@ -86,7 +87,7 @@ function App() {
                         {i + 1}
                         .
                       </div>
-                      <a href="#download" onClick={(event) => downloadDocument(event)} className="chapter_download_button" aria-label="Download" />
+                      <a href={`/system/files/official-document/tdr2024ch${i + 1}_en.pdf`} onClick={(event) => downloadDocument(event)} className="chapter_download_button" aria-label="Download" />
                     </div>
                   </div>
                 </button>
@@ -137,7 +138,7 @@ function App() {
         <IsVisible once>
           {(isVisible) => {
             if (isVisible) {
-              seenSection();
+              seenChapter('Chapter 1');
             }
             return (
               <div className="content_bottom">
@@ -150,14 +151,14 @@ function App() {
                   </span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 1</a>
+                  <a href="/system/files/official-document/tdr2024ch1_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 1</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 1')} />
         </div>
       </div>
       <div className="content_container">
@@ -254,7 +255,7 @@ function App() {
         <IsVisible once>
           {(isVisible) => {
             if (isVisible) {
-              seenSection();
+              seenChapter('Chapter 2');
             }
             return (
               <div className="content_bottom">
@@ -265,14 +266,14 @@ function App() {
                   <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 2</a>
+                  <a href="/system/files/official-document/tdr2024ch2_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 2</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 2')} />
         </div>
       </div>
       <div className="content_container">
@@ -367,7 +368,7 @@ function App() {
         <IsVisible once>
           {(isVisible) => {
             if (isVisible) {
-              seenSection();
+              seenChapter('Chapter 3');
             }
             return (
               <div className="content_bottom">
@@ -378,14 +379,14 @@ function App() {
                   <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 3</a>
+                  <a href="/system/files/official-document/tdr2024ch3_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 3</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 3')} />
         </div>
       </div>
       <div className="content_container">
@@ -474,7 +475,7 @@ function App() {
         <IsVisible once>
           {(isVisible) => {
             if (isVisible) {
-              seenSection();
+              seenChapter('Chapter 4');
             }
             return (
               <div className="content_bottom">
@@ -485,14 +486,14 @@ function App() {
                   <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 4</a>
+                  <a href="/system/files/official-document/tdr2024ch4_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 4</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 4')} />
         </div>
       </div>
       <div className="content_container">
@@ -587,7 +588,7 @@ function App() {
         <IsVisible once>
           {(isVisible) => {
             if (isVisible) {
-              seenSection();
+              seenChapter('Chapter 5');
             }
             return (
               <div className="content_bottom">
@@ -598,14 +599,14 @@ function App() {
                   <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="#download" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 5</a>
+                  <a href="/system/files/official-document/tdr2024ch5_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 5</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 5')} />
         </div>
       </div>
       <div className="content_container">
