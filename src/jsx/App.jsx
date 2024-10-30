@@ -70,14 +70,14 @@ function App() {
         </div>
         <div className="between" />
         <div className="content_bottom">
-          <h2>Pact for the Future: Redefining trade and development for global progress</h2>
+          <h2>Rethinking development in the age of discontent</h2>
           <div className="download_buttons_container">
-            <a href="/system/files/official-document/tdr2024overview_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="overview">Overview</a>
-            <a href="/system/files/official-document/tdr2024_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Full report</a>
+            <a href="/system/files/official-document/tdr2024overview_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="overview">Overview</a>
+            <a href="/system/files/official-document/tdr2024_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Full report</a>
           </div>
           <div className="chapters_navigation_container">
             {
-              ['The macro-economics of discontent', 'The illusion of a rebound', 'Globalization at an inflection point', 'Rise, retreat and repositioning', 'The Global South and new international tax architecture'].map((chapter_title, i) => (
+              ['The macro-economics of discontent', 'The illusion of a rebound', 'Globalization at an inflection point', 'Rise, retreat and repositioning: Lessons from the Global South', 'The Global South and new international tax architecture'].map((chapter_title, i) => (
                 <button onClick={() => scrollTo(`.chapter_header_${i + 1}`, `To chapter ${i + 1}`)} type="button" key={chapter_title}>
                   <div className="chapter_navigation">
                     <div className="chapter_title"><h2>{chapter_title}</h2></div>
@@ -87,7 +87,7 @@ function App() {
                         {i + 1}
                         .
                       </div>
-                      <a href={`/system/files/official-document/tdr2024ch${i + 1}_en.pdf`} onClick={(event) => downloadDocument(event)} className="chapter_download_button" aria-label="Download" />
+                      <a href={`/system/files/official-document/tdr2024ch${i + 1}_en.pdf`} target="_blank" onClick={(event) => downloadDocument(event)} className="chapter_download_button" aria-label="Download" rel="noreferrer" />
                     </div>
                   </div>
                 </button>
@@ -101,11 +101,11 @@ function App() {
       <div className="content_container">
         <div className="text_container">
           <p>The 2024 Trade and Development Report calls for a fundamental rethink of development strategies amid a global slowdown and rising social discontent.</p>
-          <p>It warns that the global economy, strained by crises and climate change, is stuck in slow growth and weak investment, unable to meet development needs.</p>
+          <p>It warns that the global economy, strained by crises and climate change, is stuck in low growth and weak investment, unable to meet development needs.</p>
           <p>Meanwhile, rapid technological changes and rising geopolitical tensions are reshaping trade and production patterns, potentially worsening inequalities between developed and developing countries.</p>
           <p>In a sluggish economy, developing nations face tough policy choices as they contend with rising debt, high energy prices and growing demands for health and social services.</p>
           <p>Despite these challenges, the report identifies opportunities, such as soaring demand for critical minerals for the energy transition and increased South-South trade. However, without strategic policy shifts, the opportunities could be lost.</p>
-          <p>The report urges developing countries to prioritize economic resilience and diversification, moving beyond manufacturing-led export models. It calls for stronger multilateral action to improve tax cooperation, ensure an equitable green transition and build a development-focused global financial system.</p>
+          <p>The report urges developing countries to prioritize economic resilience and diversification, moving beyond manufacturing-led export models. It calls for stronger multilateral action to improve tax cooperation, ensure an equitable energy transition and build a development-focused global financial system.</p>
           <p>It examines five core themes:</p>
           <ul>
             <li>A new, low normal for the global economy</li>
@@ -151,7 +151,7 @@ function App() {
                   </span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch1_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 1</a>
+                  <a href="/system/files/official-document/tdr2024ch1_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 1</a>
                 </div>
               </div>
             );
@@ -266,7 +266,7 @@ function App() {
                   <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch2_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 2</a>
+                  <a href="/system/files/official-document/tdr2024ch2_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 2</a>
                 </div>
               </div>
             );
@@ -291,27 +291,27 @@ function App() {
               <p>Between 1995 and 2007, trade grew at twice the rate of global GDP. But since the 2008–2009 financial crisis, trade growth relative to GDP has stalled.</p>
             </div>
             <div className="chart_container">
-              <DwChartContainer chart_id="DiJZv" parent_class="content_1" />
+              <DwChartContainer chart_id="PkjTv" parent_class="content_1" />
             </div>
             <div className="text_container">
               <p>Another key shift is the waning role of merchandise trade, which declined by 1.2% in 2023. This was the first time it contracted while the global economy grew.</p>
               <p>In 2024, merchandise trade is expected to rebound by 2% in real terms (after adjusting for inflation), but trade in services is set to continue growing by 5%, increasing its share of the global total to nearly 25% – a share that is expected to keep rising.</p>
             </div>
             <div className="chart_container">
-              <DwChartContainer chart_id="PkjTv" parent_class="content_1" />
+              <DwChartContainer chart_id="DiJZv" parent_class="content_1" />
             </div>
             <div className="text_container">
               <p>For low- and middle-income countries, which rely heavily on trade, these shifts compound development challenges.</p>
-              <p>However, trade between developing countries (South-South trade) more than doubled to $5.6 trillion between 2007 and 2023, offering growth and regional integration opportunities. The green transition also holds promise, with demand soaring for minerals from developing countries that are critical for electric vehicles and renewable energy.</p>
+              <p>However, trade between developing countries (South-South trade) more than doubled to $5.6 trillion between 2007 and 2023, offering growth and regional integration opportunities. The energy transition also holds promise, with demand soaring for minerals from developing countries that are critical for electric vehicles and renewable energy.</p>
             </div>
             <div className="chart_container">
-              <DwChartContainer chart_id="g0RBQ" parent_class="content_1" />
+              <DwChartContainer chart_id="ushCi" parent_class="content_1" />
             </div>
             <div className="text_container">
               <p>Yet new technologies are concentrated in the hands of companies in advanced economies, and geopolitical tensions could accelerate home-shoring, which could limit opportunities for developing countries.</p>
             </div>
             <div className="chart_container">
-              <DwChartContainer chart_id="ushCi" parent_class="content_1" />
+              <DwChartContainer chart_id="g0RBQ" parent_class="content_1" />
             </div>
           </div>
         </div>
@@ -334,7 +334,7 @@ function App() {
                   Developing countries should invest in renewable energy and implement strategic industrial policies to promote local production, reducing reliance on imported fossil fuels and vulnerabilities to global shocks.
                 </li>
                 <li>
-                  <strong>Foster regional trade and integration:</strong>
+                  <strong>Foster regional trade and integration.</strong>
                   <br />
                   Leveraging agreements like the African Continental Free Trade Agreement (AfCFTA) and ASEAN Economic Community can help developing countries navigate the risks of fragmented trade and build more diverse and resilient economies.
                 </li>
@@ -379,7 +379,7 @@ function App() {
                   <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch3_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 3</a>
+                  <a href="/system/files/official-document/tdr2024ch3_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 3</a>
                 </div>
               </div>
             );
@@ -408,17 +408,19 @@ function App() {
             </div>
             <div className="text_container">
               <p>In 2023, global merchandise trade slowed by 1.2%, while trade in services grew by 5% in real terms (after adjusting for inflation). Services now make up nearly 25% of global trade, and this share is expected to grow further, raising hopes that services could become a new growth engine.</p>
+            </div>
+            <div className="chart_container">
+              <DwChartContainer chart_id="yze6W" parent_class="content_1" />
+            </div>
+            <div className="text_container">
               <p>However, relying on trade in services as the main driver for development carries risks, especially for developing countries, which account for less than 30% of global services export revenues.</p>
+              <p>The unlevel playing field is evident in the fast-growing creative services sector, valued at $1.4 trillion in 2022, where developed countries account for 80% of exports. Also, 70% of multinational enterprises providing international services are headquartered in advanced economies.</p>
             </div>
             <div className="chart_container">
               <DwChartContainer chart_id="CvAkx" parent_class="content_1" />
             </div>
             <div className="text_container">
-              <p>The unlevel playing field is evident in the fast-growing creative services sector, valued at $1.4 trillion in 2022, where developed countries account for 80% of exports. Also, 70% of multinational enterprises providing international services are headquartered in advanced economies.</p>
               <p>The growing importance of intangible assets like brands, software, data and patented technologies in global supply chains could further widen the gap between developed and developing countries. In 2023, investment in intangible assets grew three times faster than physical assets, reaching $6.9 trillion.</p>
-            </div>
-            <div className="chart_container">
-              <DwChartContainer chart_id="yze6W" parent_class="content_1" />
             </div>
           </div>
         </div>
@@ -451,7 +453,7 @@ function App() {
                   Ensure that new policy barriers don’t hamper the potential of services exports. Reforming WTO rules on trade barriers could improve developing country access to global markets and critical technologies.
                 </li>
                 <li>
-                  <strong>Make markets fairer:</strong>
+                  <strong>Make markets fairer.</strong>
                   <br />
                   Strengthen efforts to reduce the concentration of corporate power, improve transparency and promote competition, particularly in fast-growing services markets.
                 </li>
@@ -486,7 +488,7 @@ function App() {
                   <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch4_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 4</a>
+                  <a href="/system/files/official-document/tdr2024ch4_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 4</a>
                 </div>
               </div>
             );
@@ -515,23 +517,23 @@ function App() {
             </div>
             <div className="text_container">
               <p>Financialization is increasingly shaping commodity prices, amplifying volatility and heightening risks in the energy transition, especially for export-dependent developing countries.</p>
-              <p>In response to market volatility, countries signed 22 trade agreements in 2023 to secure supplies to critical minerals. Some importers are also using industrial policies to boost local production.</p>
             </div>
             <div className="chart_container">
-              <DwChartContainer chart_id="UKeAB" parent_class="content_1" />
+              <DwChartContainer chart_id="9Da8F" parent_class="content_1" />
             </div>
             <div className="text_container">
+              <p>In response to market volatility, countries signed 22 trade agreements in 2023 to secure supplies to critical minerals. Some importers are also using industrial policies to boost local production.</p>
               <p>Mineral exploration budgets rose by 34% and 16% in 2021 and 2022, while investment in critical minerals surged 20% and 30% during the same period. However, the main benefits will likely be limited to countries with large deposits, as some minerals, like cobalt, are concentrated in specific regions.</p>
             </div>
             <div className="chart_container">
-              <DwChartContainer chart_id="TrS95" parent_class="content_1" />
+              <DwChartContainer chart_id="UKeAB" parent_class="content_1" />
             </div>
             <div className="text_container">
               <p>Meanwhile, growth in oil and gas investment is projected to slow after 2024, even as subsidies for solar and wind energy make these alternatives competitive with fossil fuels.</p>
               <p>These shifts compound challenges for fossil fuel-exporting developing countries, many of which rely on energy exports for a third of their total exports, with 26 depending on them for more than half their export earnings.</p>
             </div>
             <div className="chart_container">
-              <DwChartContainer chart_id="9Da8F" parent_class="content_1" />
+              <DwChartContainer chart_id="TrS95" parent_class="content_1" />
             </div>
           </div>
         </div>
@@ -599,7 +601,7 @@ function App() {
                   <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch5_en.pdf" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 5</a>
+                  <a href="/system/files/official-document/tdr2024ch5_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 5</a>
                 </div>
               </div>
             );
