@@ -50,7 +50,7 @@ function Figure1() {
         subtitle="Top 15 countries annually, number of vehicles manufactured, 1999–2023"
         show_only_first_and_last_labels={false}
         suffix="%"
-        title="Who manufactured the most vehicles"
+        title="China's rise in car manufacturing reflects shifts in global trade and investment"
         ylabel=""
       />
       )}

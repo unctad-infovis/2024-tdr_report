@@ -90,11 +90,11 @@ function MapBarChart({
     setRangeValue(current_year_idx);
     const tmp_data = getData(current_year_idx);
     chart.current.series[1].update({ data: tmp_data });
-    chart.current.setTitle({
-      text: `${title} in ${current_year_idx}?`
-    });
+    // chart.current.setTitle({
+    //   text: `${title} in ${current_year_idx}?`
+    // });
     chart.current.redraw(true);
-  }, [getData, title]);
+  }, [getData]);
 
   const togglePlay = useCallback(() => {
     const update = (increment) => {
@@ -325,7 +325,7 @@ function MapBarChart({
             fontWeight: 700,
             lineHeight: '34px'
           },
-          text: `${title} in 1999?`,
+          text: `${title}`,
           widthAdjust: -90,
           x: 64,
           y: 25

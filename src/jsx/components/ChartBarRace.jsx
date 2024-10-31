@@ -202,11 +202,11 @@ function BarRaceChart({
       data: tmp_data.values,
       name: year_idx
     });
-    chart.current.setTitle({
-      text: `${title} in ${year_idx}?`
-    });
+    // chart.current.setTitle({
+    //   text: `${title} in ${year_idx}?`
+    // });
     updateLineChart(year_idx);
-  }, [getData, getSubtitle, title, updateLineChart]);
+  }, [getData, getSubtitle, updateLineChart]);
 
   const togglePlay = useCallback(() => {
     const update = (increment) => {
@@ -417,7 +417,7 @@ function BarRaceChart({
           fontWeight: 700,
           lineHeight: '34px'
         },
-        text: `${`${title} in ${input.current.value}`}?`,
+        text: title,
         widthAdjust: -90,
         x: 64,
         y: 25
@@ -505,7 +505,7 @@ function BarRaceChart({
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
     setChartDone(true);
-  }, [chart_height, data, getData, input, idx, note, source, subtitle, title]);
+  }, [chart_height, data, getData, idx, note, source, subtitle, title]);
 
   useEffect(() => {
     if (isVisible === true) {
