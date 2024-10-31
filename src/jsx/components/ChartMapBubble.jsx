@@ -314,7 +314,7 @@ function MapBarChart({
           },
           text: subtitle,
           widthAdjust: -90,
-          x: 10
+          x: 64
         },
         title: {
           align: 'left',
@@ -357,7 +357,7 @@ function MapBarChart({
   }, [createChart, isVisible]);
 
   return (
-    <div className="chart_container" style={{ minHeight: chart_height, maxWidth: '700px' }} ref={chartContainerRef}>
+    <div className="chart_container" style={{ minHeight: chart_height, maxWidth: '1000px' }} ref={chartContainerRef}>
       <div className="play_controls">
         <button type="button" className="play_pause_button" aria-label="Play Pause" title="play" onClick={(event) => togglePlay(event)}>⏸︎</button>
         <input className="play_range" type="range" aria-label="Range" value={rangeValue} min={startYear} max={endYear} onInput={(event) => changeYear(event)} onChange={(event) => changeYear(event)} />
