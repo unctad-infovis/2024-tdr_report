@@ -71,6 +71,19 @@
           margin: 0 0 20px 0;
           max-width: 700px;
           padding: 0;
+          position: relative;
+          .share_wrapper {
+            display: inline;
+            position: relative;
+            z-index: 2;
+            margin: 0 10px;
+            @media all and (max-width: 768px) {
+              display: block;
+              height: 55px;
+              margin: 0 0 0 0;
+            }
+            @import './share.less';
+          }
           @media all and (max-width: 450px) {
             font-size: 38px;
             line-height: 42px;

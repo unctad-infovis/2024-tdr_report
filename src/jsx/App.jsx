@@ -7,6 +7,7 @@ import IsVisible from 'react-is-visible';
 
 import scrollIntoView from 'scroll-into-view';
 import DwChartContainer from './components/DwChartContainer.jsx';
+import ShareContainer from './components/ShareContainer.jsx';
 
 // https://www.npmjs.com/package/scroll-into-view
 import slideToggle from './helpers/slideToggle.js';
@@ -70,7 +71,11 @@ function App() {
         </div>
         <div className="between" />
         <div className="content_bottom">
-          <h2>Rethinking development in the age of discontent</h2>
+          <h2>
+            Rethinking development in the age of discontent
+            <div className="share_wrapper"><ShareContainer url={window.location.href} /></div>
+          </h2>
+
           <div className="download_buttons_container">
             <a href="/system/files/official-document/tdr2024overview_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="overview">Overview</a>
             <a href="/system/files/official-document/tdr2024_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Full report</a>
