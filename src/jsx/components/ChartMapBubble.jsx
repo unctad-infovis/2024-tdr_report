@@ -14,11 +14,15 @@ import highchartsAccessibility from 'highcharts/modules/accessibility';
 import highchartsExporting from 'highcharts/modules/exporting';
 import highchartsExportData from 'highcharts/modules/export-data';
 
+// https://d3js.org/
+import * as d3 from 'd3';
+
 import map_data_import from '../data/UNWorldmap.js';
 
 // Load helpers.
 import countryColors from '../helpers/CountryColors.js';
 import countryLocations from '../helpers/CountryLocations.js';
+import formatNr from '../helpers/FormatNr.js';
 
 highchartsMap(Highcharts);
 highchartsAccessibility(Highcharts);
@@ -76,8 +80,35 @@ function MapBarChart({
       return [countryName, countryData[year - startYear].value];
     }).sort((a, b) => b[1] - a[1]);
     const slice = output.slice(1, nbr);
-    return slice.map(el => [el[0], countryLocations(el[0])[0], countryLocations(el[0])[1] - 11.31, countryColors(el[0]), el[1]]);
+
+    return {
+      total: output[0],
+      values: slice.map(el => [el[0], countryLocations(el[0])[0], countryLocations(el[0])[1] - 11.31, countryColors(el[0]), el[1]])
+    };
   }, [data]);
+
+  const getSubtitle = useCallback(() => {
+    const total = (getData(input.current.value).total[1]).toFixed(0);
+    return `<div class="year">${input.current.value}</div><br /><div class="total">${formatNr(total, ' ')} vehicles</div>`;
+  }, [getData, input]);
+
+  const xScale = d3.scaleLinear()
+    .range([0, 170])
+    .domain([0, 24]);
+  const yScale = d3.scaleLinear()
+    .range([40, 2])
+    .domain([56000000, 100000000]);
+
+  const updateLineChart = useCallback((year_idx) => {
+    const tmp = [];
+    for (let i = startYear; i <= (parseInt(year_idx, 10)); i++) {
+      tmp.push(data[0].data[i - startYear].value);
+    }
+    const line = d3.line()
+      .x((d, i) => xScale(i))
+      .y(d => yScale(d));
+    d3.select('.meta_data_map .line_2').attr('d', line(tmp));
+  }, [data, xScale, yScale]);
 
   const pause = useCallback(() => {
     btn.current.innerHTML = '⏵︎';
@@ -86,15 +117,17 @@ function MapBarChart({
   }, []);
 
   const updateChart = useCallback((current_year_idx) => {
+    document.querySelectorAll('.meta_data_map .values')[0].innerHTML = getSubtitle();
     current_year_idx = parseInt(current_year_idx, 10);
     setRangeValue(current_year_idx);
-    const tmp_data = getData(current_year_idx);
+    const tmp_data = (getData(current_year_idx)).values;
     chart.current.series[1].update({ data: tmp_data });
     // chart.current.setTitle({
     //   text: `${title} in ${current_year_idx}?`
     // });
+    updateLineChart(current_year_idx);
     chart.current.redraw(true);
-  }, [getData]);
+  }, [getData, getSubtitle, updateLineChart]);
 
   const togglePlay = useCallback(() => {
     const update = (increment) => {
@@ -137,7 +170,7 @@ function MapBarChart({
   }, [chartDone, once, togglePlay]);
 
   const isVisible = useIsVisible(chartRef, { once: true });
-  const createChart = useCallback((map_data) => {
+  const createChart = useCallback(() => {
     if (once === false) {
       chart.current = Highcharts.mapChart(`chartIdx${idx}`, {
         caption: {
@@ -162,7 +195,7 @@ function MapBarChart({
               chart_this.renderer.image('https://static.dwcdn.net/custom/themes/unctad-2024-rebrand/Blue%20arrow.svg', 20, 20, 44, 43.88).add();
             }
           },
-          map: map_data,
+          map: map_data_import,
           marginRight: 50,
           resetZoomButton: {
             theme: {
@@ -347,14 +380,25 @@ function MapBarChart({
   }, [chart_height, idx, getData, note, once, source, subtitle, title]);
 
   useEffect(() => {
-    btn.current = chartContainerRef.current.querySelector('.play_pause_button');
-    input.current = chartContainerRef.current.querySelector('.play_range');
-    if (isVisible === true) {
+    if (isVisible === true && once === false) {
+      btn.current = chartContainerRef.current.querySelector('.play_pause_button');
+      input.current = chartContainerRef.current.querySelector('.play_range');
       setTimeout(() => {
-        createChart(map_data_import);
+        createChart();
+        document.querySelectorAll('.meta_data_map .values')[0].innerHTML = getSubtitle();
+        const svg_container = d3.select('.meta_data_map .line_chart')
+          .append('svg');
+
+        const line_container = svg_container.append('g')
+          .attr('class', 'line_container')
+          .attr('transform', 'translate(0, 0)');
+        // Add the lines.
+        line_container.append('path')
+          .attr('class', 'line line_2')
+          .data([]);
       }, 300);
     }
-  }, [createChart, isVisible]);
+  }, [createChart, getSubtitle, once, isVisible]);
 
   return (
     <div className="chart_container" style={{ minHeight: chart_height, maxWidth: '1000px' }} ref={chartContainerRef}>
@@ -362,9 +406,12 @@ function MapBarChart({
         <button type="button" className="play_pause_button" aria-label="Play Pause" title="play" onClick={(event) => togglePlay(event)}>⏸︎</button>
         <input className="play_range" type="range" aria-label="Range" value={rangeValue} min={startYear} max={endYear} onInput={(event) => changeYear(event)} onChange={(event) => changeYear(event)} />
       </div>
-
       <div ref={chartRef}>
         {(isVisible) && (<div className="chart" id={`chartIdx${idx}`} />)}
+      </div>
+      <div className="meta_data_map">
+        <div className="values" />
+        <div className="line_chart" />
       </div>
       <noscript>Your browser does not support JavaScript!</noscript>
     </div>

@@ -185,7 +185,7 @@ function BarRaceChart({
     const line = d3.line()
       .x((d, i) => xScale(i))
       .y(d => yScale(d));
-    d3.select('.line_1').attr('d', line(tmp));
+    d3.select('.meta_data .line_1').attr('d', line(tmp));
   }, [data, xScale, yScale]);
 
   const pause = useCallback(() => {
@@ -250,271 +250,273 @@ function BarRaceChart({
 
   const isVisible = useIsVisible(chartRef, { once: true });
   const createChart = useCallback(() => {
-    const tmp_data = getData(startYear);
-    chart.current = Highcharts.chart(`chartIdx${idx}`, {
-      caption: {
-        align: 'left',
-        margin: 20,
-        style: {
-          color: 'rgba(0, 0, 0, 0.8)',
-          fontSize: '14px'
+    if (once === false) {
+      const tmp_data = getData(startYear);
+      chart.current = Highcharts.chart(`chartIdx${idx}`, {
+        caption: {
+          align: 'left',
+          margin: 20,
+          style: {
+            color: 'rgba(0, 0, 0, 0.8)',
+            fontSize: '14px'
+          },
+          text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
+          useHTML: true,
+          verticalAlign: 'bottom',
+          x: 0
         },
-        text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
-        useHTML: true,
-        verticalAlign: 'bottom',
-        x: 0
-      },
-      chart: {
-        animation: {
-          duration: 500
+        chart: {
+          animation: {
+            duration: 500
+          },
+          backgroundColor: '#f4f9fd',
+          height: chart_height,
+          events: {
+            load() {
+              const chart_this = this;
+              chart_this.renderer.image('https://static.dwcdn.net/custom/themes/unctad-2024-rebrand/Blue%20arrow.svg', 20, 20, 44, 43.88).add();
+            }
+          },
+          marginLeft: 60,
+          marginRight: 170,
+          resetZoomButton: {
+            theme: {
+              fill: '#fff',
+              r: 0,
+              states: {
+                hover: {
+                  fill: '#0077b8',
+                  stroke: 'transparent',
+                  style: {
+                    color: '#fff'
+                  }
+                }
+              },
+              stroke: '#7c7067',
+              style: {
+                fontFamily: 'Inter',
+                fontSize: '13px',
+                fontWeight: 400
+              }
+            }
+          },
+          style: {
+            color: 'rgba(0, 0, 0, 0.8)',
+            fontFamily: 'Inter',
+            fontWeight: 400
+          },
+          type: 'bar'
         },
-        backgroundColor: '#f4f9fd',
-        height: chart_height,
-        events: {
-          load() {
-            const chart_this = this;
-            chart_this.renderer.image('https://static.dwcdn.net/custom/themes/unctad-2024-rebrand/Blue%20arrow.svg', 20, 20, 44, 43.88).add();
+        credits: {
+          enabled: false
+        },
+        exporting: {
+          enabled: false,
+          buttons: {
+            contextButton: {
+              menuItems: ['viewFullscreen', 'separator', 'downloadPNG', 'downloadPDF', 'separator', 'downloadCSV'],
+              symbol: 'download',
+              symbolFill: '#000'
+            }
           }
         },
-        marginLeft: 60,
-        marginRight: 170,
-        resetZoomButton: {
-          theme: {
-            fill: '#fff',
-            r: 0,
-            states: {
-              hover: {
-                fill: '#0077b8',
-                stroke: 'transparent',
+        legend: {
+          align: 'left',
+          enabled: true,
+          itemDistance: 5,
+          margin: 0,
+          verticalAlign: 'top',
+        },
+        plotOptions: {
+          bar: {
+            animation: false,
+            borderWidth: 0,
+            colorByPoint: false,
+            cursor: 'default',
+            dataSorting: {
+              enabled: true,
+              matchByName: true
+            },
+            groupPadding: 0,
+            pointPadding: 0.075
+          },
+          series: {
+            dataLabels: [{
+              enabled: true,
+              style: {
+                fontSize: 14,
+                fontWeight: 600
+              },
+              y: 8
+            }, {
+              enabled: true,
+              format: '{point.name}',
+              style: {
+                color: '#222',
+                fontSize: 15,
+                fontWeight: 'normal',
+                opacity: 1
+              },
+              y: -10
+            }]
+          }
+        },
+        responsive: {
+          rules: [{
+            chartOptions: {
+              legend: {
+                layout: 'horizontal'
+              },
+              title: {
+                margin: 20,
                 style: {
-                  color: '#fff'
+                  fontSize: '26px',
+                  lineHeight: '30px'
                 }
               }
             },
-            stroke: '#7c7067',
-            style: {
-              fontFamily: 'Inter',
-              fontSize: '13px',
-              fontWeight: 400
+            condition: {
+              maxWidth: 500
             }
-          }
-        },
-        style: {
-          color: 'rgba(0, 0, 0, 0.8)',
-          fontFamily: 'Inter',
-          fontWeight: 400
-        },
-        type: 'bar'
-      },
-      credits: {
-        enabled: false
-      },
-      exporting: {
-        enabled: false,
-        buttons: {
-          contextButton: {
-            menuItems: ['viewFullscreen', 'separator', 'downloadPNG', 'downloadPDF', 'separator', 'downloadCSV'],
-            symbol: 'download',
-            symbolFill: '#000'
-          }
-        }
-      },
-      legend: {
-        align: 'left',
-        enabled: true,
-        itemDistance: 5,
-        margin: 0,
-        verticalAlign: 'top',
-      },
-      plotOptions: {
-        bar: {
-          animation: false,
-          borderWidth: 0,
-          colorByPoint: false,
-          cursor: 'default',
-          dataSorting: {
-            enabled: true,
-            matchByName: true
-          },
-          groupPadding: 0,
-          pointPadding: 0.075
-        },
-        series: {
-          dataLabels: [{
-            enabled: true,
-            style: {
-              fontSize: 14,
-              fontWeight: 600
-            },
-            y: 8
-          }, {
-            enabled: true,
-            format: '{point.name}',
-            style: {
-              color: '#222',
-              fontSize: 15,
-              fontWeight: 'normal',
-              opacity: 1
-            },
-            y: -10
           }]
-        }
-      },
-      responsive: {
-        rules: [{
-          chartOptions: {
-            legend: {
-              layout: 'horizontal'
-            },
-            title: {
-              margin: 20,
-              style: {
-                fontSize: '26px',
-                lineHeight: '30px'
-              }
-            }
-          },
-          condition: {
-            maxWidth: 500
-          }
-        }]
-      },
-      series: [{
-        data: tmp_data.values,
-        name: startYear,
-        showInLegend: false,
-        type: 'bar'
-      }, {
-        color: '#009edb',
-        name: 'Developed countries',
-        showInLegend: true,
-        type: 'column'
-      }, {
-        color: '#fbaf17',
-        name: 'Developing countries',
-        showInLegend: true,
-        type: 'column'
-      }],
-      subtitle: {
-        align: 'left',
-        enabled: true,
-        style: {
-          color: 'rgba(0, 0, 0, 0.8)',
-          fontSize: '16px',
-          fontWeight: 400,
-          lineHeight: '18px'
         },
-        text: subtitle,
-        widthAdjust: -90,
-        x: 64
-      },
-      title: {
-        align: 'left',
-        margin: 10,
-        style: {
-          color: '#000',
-          fontSize: '30px',
-          fontWeight: 700,
-          lineHeight: '34px'
-        },
-        text: title,
-        widthAdjust: -90,
-        x: 64,
-        y: 25
-      },
-      tooltip: {
-        enabled: false
-      },
-      xAxis: {
-        categories: data[0].labels,
-        crosshair: {
-          color: 'transparent',
-          width: 1
-        },
-        reserveSpace: true,
-        labels: {
-          formatter: (el) => `<img src="${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2024-tdr_report/' : (window.location.href.includes('localhost:80')) ? './' : 'https://unctad-infovis.github.io/2024-tdr_report/'}assets/img/flags/${countryCodes(el.value)}.png" class="flag" />`,
-          distance: 10,
-          padding: 0,
-          rotation: 0,
+        series: [{
+          data: tmp_data.values,
+          name: startYear,
+          showInLegend: false,
+          type: 'bar'
+        }, {
+          color: '#009edb',
+          name: 'Developed countries',
+          showInLegend: true,
+          type: 'column'
+        }, {
+          color: '#fbaf17',
+          name: 'Developing countries',
+          showInLegend: true,
+          type: 'column'
+        }],
+        subtitle: {
+          align: 'left',
+          enabled: true,
           style: {
             color: 'rgba(0, 0, 0, 0.8)',
-            fontFamily: 'Inter',
-            fontSize: '14px',
-            fontWeight: 400
+            fontSize: '16px',
+            fontWeight: 400,
+            lineHeight: '18px'
           },
-          useHTML: true
+          text: subtitle,
+          widthAdjust: -90,
+          x: 64
         },
-        lineColor: 'transparent',
-        lineWidth: 0,
-        opposite: false,
-        plotLines: null,
-        showFirstLabel: true,
-        showLastLabel: true,
-        tickWidth: 0,
         title: {
+          align: 'left',
+          margin: 10,
+          style: {
+            color: '#000',
+            fontSize: '30px',
+            fontWeight: 700,
+            lineHeight: '34px'
+          },
+          text: title,
+          widthAdjust: -90,
+          x: 64,
+          y: 25
+        },
+        tooltip: {
           enabled: false
         },
-        type: 'category'
-      },
-      yAxis: {
-        accessibility: {
-          description: 'Index'
-        },
-        allowDecimals: true,
-        gridLineColor: 'rgba(124, 112, 103, 0.2)',
-        gridLineWidth: 1,
-        gridLineDashStyle: 'shortdot',
-        labels: {
-          rotation: 0,
-          style: {
-            color: 'rgba(0, 0, 0, 0.8)',
-            fontFamily: 'Inter',
-            fontSize: '14px',
-            fontWeight: 400
-          }
-        },
-        endOnTick: false,
-        lineColor: 'transparent',
-        lineWidth: 0,
-        opposite: true,
-        startOnTick: false,
-        plotLines: [{
-          color: 'rgba(124, 112, 103, 0.6)',
-          value: 0,
-          width: 1
-        }],
-        showFirstLabel: false,
-        showLastLabel: true,
-        tickPixelInterval: 75,
-        title: {
-          enabled: true,
-          reserveSpace: true,
-          rotation: 0,
-          style: {
-            color: 'rgba(0, 0, 0, 0.8)',
-            fontFamily: 'Inter',
-            fontSize: '16px',
-            fontWeight: 400
+        xAxis: {
+          categories: data[0].labels,
+          crosshair: {
+            color: 'transparent',
+            width: 1
           },
-          text: '',
-          verticalAlign: 'top',
+          reserveSpace: true,
+          labels: {
+            formatter: (el) => `<img src="${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2024-tdr_report/' : (window.location.href.includes('localhost:80')) ? './' : 'https://unctad-infovis.github.io/2024-tdr_report/'}assets/img/flags/${countryCodes(el.value)}.png" class="flag" />`,
+            distance: 10,
+            padding: 0,
+            rotation: 0,
+            style: {
+              color: 'rgba(0, 0, 0, 0.8)',
+              fontFamily: 'Inter',
+              fontSize: '14px',
+              fontWeight: 400
+            },
+            useHTML: true
+          },
+          lineColor: 'transparent',
+          lineWidth: 0,
+          opposite: false,
+          plotLines: null,
+          showFirstLabel: true,
+          showLastLabel: true,
+          tickWidth: 0,
+          title: {
+            enabled: false
+          },
+          type: 'category'
         },
-        type: 'linear'
-      }
-    });
-    chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-    setChartDone(true);
-  }, [chart_height, data, getData, idx, note, source, subtitle, title]);
+        yAxis: {
+          accessibility: {
+            description: 'Index'
+          },
+          allowDecimals: true,
+          gridLineColor: 'rgba(124, 112, 103, 0.2)',
+          gridLineWidth: 1,
+          gridLineDashStyle: 'shortdot',
+          labels: {
+            rotation: 0,
+            style: {
+              color: 'rgba(0, 0, 0, 0.8)',
+              fontFamily: 'Inter',
+              fontSize: '14px',
+              fontWeight: 400
+            }
+          },
+          endOnTick: false,
+          lineColor: 'transparent',
+          lineWidth: 0,
+          opposite: true,
+          startOnTick: false,
+          plotLines: [{
+            color: 'rgba(124, 112, 103, 0.6)',
+            value: 0,
+            width: 1
+          }],
+          showFirstLabel: false,
+          showLastLabel: true,
+          tickPixelInterval: 75,
+          title: {
+            enabled: true,
+            reserveSpace: true,
+            rotation: 0,
+            style: {
+              color: 'rgba(0, 0, 0, 0.8)',
+              fontFamily: 'Inter',
+              fontSize: '16px',
+              fontWeight: 400
+            },
+            text: '',
+            verticalAlign: 'top',
+          },
+          type: 'linear'
+        }
+      });
+      chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
+      setChartDone(true);
+    }
+  }, [chart_height, data, getData, idx, note, once, source, subtitle, title]);
 
   useEffect(() => {
-    if (isVisible === true) {
+    if (isVisible === true && once === false) {
       btn.current = chartContainerRef.current.querySelector('.play_pause_button');
       input.current = chartContainerRef.current.querySelector('.play_range');
       setTimeout(() => {
         createChart();
         document.querySelectorAll('.meta_data .values')[0].innerHTML = getSubtitle();
-        const svg_container = d3.select('.line_chart')
+        const svg_container = d3.select('.meta_data .line_chart')
           .append('svg');
 
         const line_container = svg_container.append('g')
@@ -526,7 +528,7 @@ function BarRaceChart({
           .data([]);
       }, 300);
     }
-  }, [createChart, getSubtitle, isVisible]);
+  }, [createChart, getSubtitle, once, isVisible]);
 
   return (
     <div className="chart_container" style={{ minHeight: chart_height, maxWidth: '1000px' }} ref={chartContainerRef}>
