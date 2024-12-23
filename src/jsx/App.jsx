@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import '../styles/styles.less';
 
 // https://www.npmjs.com/package/react-is-visible
@@ -17,17 +17,18 @@ function App() {
 
   const analytics = window.gtag || undefined;
   const project_name = '2024-tdr';
-  const track = (event_type = false, event_name = false) => {
+
+  const track = useCallback((event_type = false, event_name = false) => {
     if (typeof analytics !== 'undefined' && event_name !== false) {
       analytics('event', project_name, { event_type, event_name, transport_type: 'beacon' });
     }
-  };
+  }, [analytics]);
 
   const seenChapter = (chapter) => {
     track('Scroll', chapter);
   };
 
-  const scrollTo = (target, name) => {
+  const scrollTo = useCallback((target, name) => {
     track('Button', name);
     setTimeout(() => {
       scrollIntoView(appRef.current.querySelector(target), {
@@ -43,7 +44,17 @@ function App() {
         time: 1000
       });
     }, 50);
-  };
+  }, [track]);
+
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      if (hash === '#chapter1' || hash === '#chapter2' || hash === '#chapter3' || hash === '#chapter4' || hash === '#chapter5') {
+        const chapter_number = hash.slice(-1);
+        scrollTo(`.chapter_header_${chapter_number}`, `To chapter ${chapter_number}`);
+      }
+    }
+  }, [scrollTo]);
 
   const openContainer = (seq, type, event) => {
     track('Button', `Open container ${seq}`);
@@ -130,7 +141,7 @@ function App() {
       </div>
 
       { /* Chapter 1 */ }
-      <div className="chapter_header chapter_header_1">
+      <div className="chapter_header chapter_header_1" id="chapter1">
         <div className="content_top">
           <h2>
             <div className="year">
@@ -247,7 +258,7 @@ function App() {
       </div>
 
       { /* Chapter 2 */ }
-      <div className="chapter_header chapter_header_2">
+      <div className="chapter_header chapter_header_2" id="chapter2">
         <div className="content_top">
           <h2>
             <div className="year">
@@ -360,7 +371,7 @@ function App() {
       </div>
 
       { /* Chapter 3 */ }
-      <div className="chapter_header chapter_header_3">
+      <div className="chapter_header chapter_header_3" id="chapter3">
         <div className="content_top">
           <h2>
             <div className="year">
@@ -469,7 +480,7 @@ function App() {
       </div>
 
       { /* Chapter 4 */ }
-      <div className="chapter_header chapter_header_4">
+      <div className="chapter_header chapter_header_4" id="chapter4">
         <div className="content_top">
           <h2>
             <div className="year">
@@ -582,7 +593,7 @@ function App() {
       </div>
 
       { /* Chapter 5 */ }
-      <div className="chapter_header chapter_header_5">
+      <div className="chapter_header chapter_header_5" id="chapter5">
         <div className="content_top">
           <h2>
             <div className="year">
