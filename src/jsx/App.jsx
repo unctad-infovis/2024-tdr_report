@@ -16,11 +16,15 @@ function App() {
   const appRef = useRef();
 
   const analytics = window.gtag || undefined;
-  const project_name = '2024-tdr';
 
-  const track = useCallback((event_type = false, event_name = false) => {
-    if (typeof analytics !== 'undefined' && event_name !== false) {
-      analytics('event', project_name, { event_type, event_name, transport_type: 'beacon' });
+  const track = useCallback((label_event = false, value_event = false) => {
+    if (typeof analytics !== 'undefined' && label_event !== false && value_event !== false) {
+      analytics('event', 'project_interaction', {
+        label: label_event,
+        project_name: '2024-tdr_report',
+        transport_type: 'beacon',
+        value: value_event
+      });
     }
   }, [analytics]);
 
@@ -51,7 +55,7 @@ function App() {
     if (hash) {
       if (hash === '#chapter1' || hash === '#chapter2' || hash === '#chapter3' || hash === '#chapter4' || hash === '#chapter5') {
         const chapter_number = hash.slice(-1);
-        scrollTo(`.chapter_header_${chapter_number}`, `To chapter ${chapter_number}`);
+        scrollTo(`.chapter_header_${chapter_number}`, `Chapter ${chapter_number}`);
       }
     }
   }, [scrollTo]);
@@ -88,13 +92,13 @@ function App() {
           </h2>
 
           <div className="download_buttons_container">
-            <a href="/system/files/official-document/tdr2024overview_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="overview">Overview</a>
-            <a href="/system/files/official-document/tdr2024_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Full report</a>
+            <a href="https://unctad.org/system/files/official-document/tdr2024overview_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="overview" rel="noreferrer">Overview</a>
+            <a href="https://unctad.org/system/files/official-document/tdr2024_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Full report</a>
           </div>
           <div className="chapters_navigation_container">
             {
               ['The macro-economics of discontent', 'The illusion of a rebound', 'Globalization at an inflection point', 'Rise, retreat and repositioning: Lessons from the Global South', 'The Global South and new international tax architecture'].map((chapter_title, i) => (
-                <button onClick={() => scrollTo(`.chapter_header_${i + 1}`, `To chapter ${i + 1}`)} type="button" key={chapter_title}>
+                <button onClick={() => scrollTo(`.chapter_header_${i + 1}`, `Chapter ${i + 1}`)} type="button" key={chapter_title}>
                   <div className="chapter_navigation">
                     <div className="chapter_title"><h2>{chapter_title}</h2></div>
                     <div className="chapter_image"><div className={`chapter_image_${i + 1}`} /></div>
@@ -103,7 +107,7 @@ function App() {
                         {i + 1}
                         .
                       </div>
-                      <a href={`/system/files/official-document/tdr2024ch${i + 1}_en.pdf`} target="_blank" onClick={(event) => downloadDocument(event)} className="chapter_download_button" aria-label="Download" rel="noreferrer" />
+                      <a href={`https://unctad.org/system/files/official-document/tdr2024ch${i + 1}_en.pdf`} target="_blank" onClick={(event) => downloadDocument(event)} className="chapter_download_button" aria-label="Download" rel="noreferrer" />
                     </div>
                   </div>
                 </button>
@@ -167,14 +171,14 @@ function App() {
                   </span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch1_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 1</a>
+                  <a href="https://unctad.org/system/files/official-document/tdr2024ch1_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 1</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 1')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 1')} />
         </div>
       </div>
       <div className="content_container">
@@ -282,14 +286,14 @@ function App() {
                   <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch2_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 2</a>
+                  <a href="https://unctad.org/system/files/official-document/tdr2024ch2_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 2</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 2')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 2')} />
         </div>
       </div>
       <div className="content_container">
@@ -395,14 +399,14 @@ function App() {
                   <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch3_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 3</a>
+                  <a href="https://unctad.org/system/files/official-document/tdr2024ch3_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 3</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 3')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 3')} />
         </div>
       </div>
       <div className="content_container">
@@ -504,14 +508,14 @@ function App() {
                   <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch4_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 4</a>
+                  <a href="https://unctad.org/system/files/official-document/tdr2024ch4_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 4</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 4')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 4')} />
         </div>
       </div>
       <div className="content_container">
@@ -617,14 +621,14 @@ function App() {
                   <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
                 </h2>
                 <div className="download_buttons_container">
-                  <a href="/system/files/official-document/tdr2024ch5_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download">Chapter 5</a>
+                  <a href="https://unctad.org/system/files/official-document/tdr2024ch5_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 5</a>
                 </div>
               </div>
             );
           }}
         </IsVisible>
         <div className="backtoptop_container">
-          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Back to top 5')} />
+          <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 5')} />
         </div>
       </div>
       <div className="content_container">
