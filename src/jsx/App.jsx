@@ -116,7 +116,16 @@ function App() {
           </div>
         </div>
       </div>
-
+      <div style={{ margin: '40px auto', textAlign: 'center' }}>
+        <a
+          style={{
+            backgroundColor: '#009edb', color: '#fff', fontSize: '26px', padding: '15px 20px', borderRadius: '20px', textDecoration: 'none'
+          }}
+          href="https://unctad.org/publication/trade-and-development-report-2025"
+        >
+          See the Trade and Development Report 2025
+        </a>
+      </div>
       { /* Overview */}
       <div className="content_container">
         <div className="text_container">
