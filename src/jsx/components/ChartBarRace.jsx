@@ -133,7 +133,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 }(Highcharts));
 
 function BarRaceChart({
-  chart_height, data, idx, note, source, subtitle, title
+  chart_height = 800, data, idx, note = false, source, subtitle = '', title
 }) {
   const btn = useRef();
   const chart = useRef();
@@ -556,12 +556,6 @@ BarRaceChart.propTypes = {
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   title: PropTypes.string.isRequired
-};
-
-BarRaceChart.defaultProps = {
-  chart_height: 800,
-  note: false,
-  subtitle: ''
 };
 
 export default memo(BarRaceChart);

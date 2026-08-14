@@ -55,7 +55,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function MapBarChart({
-  data, chart_height, idx, note, source, subtitle, title
+  data, chart_height = 520, idx, note = false, source, subtitle = '', title
 }) {
   const btn = useRef();
   const chart = useRef();
@@ -426,12 +426,6 @@ MapBarChart.propTypes = {
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   title: PropTypes.string.isRequired
-};
-
-MapBarChart.defaultProps = {
-  chart_height: 520,
-  note: false,
-  subtitle: ''
 };
 
 export default memo(MapBarChart);

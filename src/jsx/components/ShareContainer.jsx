@@ -67,7 +67,4 @@ ShareContainer.propTypes = {
   url: PropTypes.string.isRequired
 };
 
-ShareContainer.defaultProps = {
-};
-
 export default ShareContainer;
