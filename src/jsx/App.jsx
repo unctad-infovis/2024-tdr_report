@@ -3,7 +3,7 @@ import '../styles/styles.less';
 
 // https://www.npmjs.com/package/react-is-visible
 import 'intersection-observer';
-import IsVisible from 'react-is-visible';
+import { useIsVisible } from 'react-is-visible';
 
 import scrollIntoView from 'scroll-into-view';
 import DwChartContainer from './components/DwChartContainer.jsx';
@@ -14,6 +14,16 @@ import slideToggle from './helpers/slideToggle.js';
 
 function App() {
   const appRef = useRef();
+  const isVisibleRef1 = useRef();
+  const isVisible1 = useIsVisible(isVisibleRef1, { once: true });
+  const isVisibleRef2 = useRef();
+  const isVisible2 = useIsVisible(isVisibleRef2, { once: true });
+  const isVisibleRef3 = useRef();
+  const isVisible3 = useIsVisible(isVisibleRef3, { once: true });
+  const isVisibleRef4 = useRef();
+  const isVisible4 = useIsVisible(isVisibleRef4, { once: true });
+  const isVisibleRef5 = useRef();
+  const isVisible5 = useIsVisible(isVisibleRef5, { once: true });
 
   const analytics = window.gtag || undefined;
 
@@ -28,9 +38,25 @@ function App() {
     }
   }, [analytics]);
 
-  const seenChapter = (chapter) => {
+  const seenChapter = useCallback((chapter) => {
     track('Scroll', chapter);
-  };
+  }, [track]);
+
+  useEffect(() => {
+    if (isVisible1) seenChapter('Chapter 1');
+  }, [isVisible1, seenChapter]);
+  useEffect(() => {
+    if (isVisible2) seenChapter('Chapter 2');
+  }, [isVisible2, seenChapter]);
+  useEffect(() => {
+    if (isVisible3) seenChapter('Chapter 3');
+  }, [isVisible3, seenChapter]);
+  useEffect(() => {
+    if (isVisible4) seenChapter('Chapter 4');
+  }, [isVisible4, seenChapter]);
+  useEffect(() => {
+    if (isVisible5) seenChapter('Chapter 5');
+  }, [isVisible5, seenChapter]);
 
   const scrollTo = useCallback((target, name) => {
     track('Button', name);
@@ -164,28 +190,19 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <IsVisible once>
-          {(isVisible) => {
-            if (isVisible) {
-              seenChapter('Chapter 1');
-            }
-            return (
-              <div className="content_bottom">
-                <h2>
-                  <span className="chapter">Chapter</span>
-                  <span className="number">1</span>
-                  <span className="name">The macroeconomics of discontent: Current trends and challenges in the global economy</span>
-                  <span className="desc">
-                    This section examines the impacts of the global economy’s new, “low normal” of 2.7% growth – a rate far below what’s needed to meet development goals
-                  </span>
-                </h2>
-                <div className="download_buttons_container">
-                  <a href="https://unctad.org/system/files/official-document/tdr2024ch1_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 1</a>
-                </div>
-              </div>
-            );
-          }}
-        </IsVisible>
+        <div ref={isVisibleRef1} className="content_bottom">
+          <h2>
+            <span className="chapter">Chapter</span>
+            <span className="number">1</span>
+            <span className="name">The macroeconomics of discontent: Current trends and challenges in the global economy</span>
+            <span className="desc">
+              This section examines the impacts of the global economy’s new, “low normal” of 2.7% growth – a rate far below what’s needed to meet development goals
+            </span>
+          </h2>
+          <div className="download_buttons_container">
+            <a href="https://unctad.org/system/files/official-document/tdr2024ch1_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 1</a>
+          </div>
+        </div>
         <div className="backtoptop_container">
           <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 1')} />
         </div>
@@ -281,26 +298,17 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <IsVisible once>
-          {(isVisible) => {
-            if (isVisible) {
-              seenChapter('Chapter 2');
-            }
-            return (
-              <div className="content_bottom">
-                <h2>
-                  <span className="chapter">Chapter</span>
-                  <span className="number">2</span>
-                  <span className="name">The illusion of a rebound: International markets in 2024</span>
-                  <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
-                </h2>
-                <div className="download_buttons_container">
-                  <a href="https://unctad.org/system/files/official-document/tdr2024ch2_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 2</a>
-                </div>
-              </div>
-            );
-          }}
-        </IsVisible>
+        <div ref={isVisibleRef2} className="content_bottom">
+          <h2>
+            <span className="chapter">Chapter</span>
+            <span className="number">2</span>
+            <span className="name">The illusion of a rebound: International markets in 2024</span>
+            <span className="desc">This section examines trade’s changing structure, including the waning role of merchandise exports and the rising influence of new technologies and geopolitics.</span>
+          </h2>
+          <div className="download_buttons_container">
+            <a href="https://unctad.org/system/files/official-document/tdr2024ch2_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 2</a>
+          </div>
+        </div>
         <div className="backtoptop_container">
           <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 2')} />
         </div>
@@ -394,26 +402,17 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <IsVisible once>
-          {(isVisible) => {
-            if (isVisible) {
-              seenChapter('Chapter 3');
-            }
-            return (
-              <div className="content_bottom">
-                <h2>
-                  <span className="chapter">Chapter</span>
-                  <span className="number">3</span>
-                  <span className="name">Globalization at an inflection point</span>
-                  <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
-                </h2>
-                <div className="download_buttons_container">
-                  <a href="https://unctad.org/system/files/official-document/tdr2024ch3_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 3</a>
-                </div>
-              </div>
-            );
-          }}
-        </IsVisible>
+        <div ref={isVisibleRef3} className="content_bottom">
+          <h2>
+            <span className="chapter">Chapter</span>
+            <span className="number">3</span>
+            <span className="name">Globalization at an inflection point</span>
+            <span className="desc">This section focuses on the dawn of the service economy and the growing role of intangibles in trade, highlighting the risks and opportunities for developing countries.</span>
+          </h2>
+          <div className="download_buttons_container">
+            <a href="https://unctad.org/system/files/official-document/tdr2024ch3_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 3</a>
+          </div>
+        </div>
         <div className="backtoptop_container">
           <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 3')} />
         </div>
@@ -503,26 +502,17 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <IsVisible once>
-          {(isVisible) => {
-            if (isVisible) {
-              seenChapter('Chapter 4');
-            }
-            return (
-              <div className="content_bottom">
-                <h2>
-                  <span className="chapter">Chapter</span>
-                  <span className="number">4</span>
-                  <span className="name">Rise, retreat and repositioning: Lessons from the Global South</span>
-                  <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
-                </h2>
-                <div className="download_buttons_container">
-                  <a href="https://unctad.org/system/files/official-document/tdr2024ch4_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 4</a>
-                </div>
-              </div>
-            );
-          }}
-        </IsVisible>
+        <div ref={isVisibleRef4} className="content_bottom">
+          <h2>
+            <span className="chapter">Chapter</span>
+            <span className="number">4</span>
+            <span className="name">Rise, retreat and repositioning: Lessons from the Global South</span>
+            <span className="desc">This section dissects financialization in a new commodity cycle, highlighting the increased volatility and risks for export-dependent developing countries in the energy transition.</span>
+          </h2>
+          <div className="download_buttons_container">
+            <a href="https://unctad.org/system/files/official-document/tdr2024ch4_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 4</a>
+          </div>
+        </div>
         <div className="backtoptop_container">
           <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 4')} />
         </div>
@@ -616,26 +606,17 @@ function App() {
             <div className="name">Trade and Development Report</div>
           </h2>
         </div>
-        <IsVisible once>
-          {(isVisible) => {
-            if (isVisible) {
-              seenChapter('Chapter 5');
-            }
-            return (
-              <div className="content_bottom">
-                <h2>
-                  <span className="chapter">Chapter</span>
-                  <span className="number">5</span>
-                  <span className="name">The Global South and new international tax architecture: The quest for development finance</span>
-                  <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
-                </h2>
-                <div className="download_buttons_container">
-                  <a href="https://unctad.org/system/files/official-document/tdr2024ch5_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 5</a>
-                </div>
-              </div>
-            );
-          }}
-        </IsVisible>
+        <div ref={isVisibleRef5} className="content_bottom">
+          <h2>
+            <span className="chapter">Chapter</span>
+            <span className="number">5</span>
+            <span className="name">The Global South and new international tax architecture: The quest for development finance</span>
+            <span className="desc">This section examines the Global South’s search for long-term development finance as they grapple with overlapping crises, limited access to capital and lost revenue.</span>
+          </h2>
+          <div className="download_buttons_container">
+            <a href="https://unctad.org/system/files/official-document/tdr2024ch5_en.pdf" target="_blank" onClick={(event) => downloadDocument(event)} type="button" className="pdf_download" rel="noreferrer">Chapter 5</a>
+          </div>
+        </div>
         <div className="backtoptop_container">
           <button className="backtotop" type="button" aria-label="Back to top" onClick={() => scrollTo('.header_container', 'Top 5')} />
         </div>
